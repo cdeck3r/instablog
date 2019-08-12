@@ -1,4 +1,4 @@
-baseurl = "http://cdeck3r.com/instablog"
+baseurl = "http://cdeck3r.com/instablog/"
 languageCode = "en-us"
 title = "Instablog"
 theme = "onedly"
