@@ -34,6 +34,24 @@ Summary The list below displays the achieved objectives:
     </item>
     
     <item>
+      <title>Imprint</title>
+      <link>http://cdeck3r.com/instablog/imprint-gdpr/imprint/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/imprint-gdpr/imprint/</guid>
+      <description>Information according to § 5 TMG
+Christian Decker
+Danziger Str. 6
+71034 Böblingen
+Contact: Phone: +49 7121 271 4105
+E-Mail: info@cdeck3r.com
+Responsible for content according to § 55 Abs. 2 RStV: Christian Decker
+Danziger Str. 6
+71034 Böblingen
+Disclaimer: Content Liability The contents of our pages were created with great care. However, we can not assume any liability for the accuracy, completeness and timeliness of the content. As a service provider we are responsible according to § 7 Abs.</description>
+    </item>
+    
+    <item>
       <title>Project Definition</title>
       <link>http://cdeck3r.com/instablog/post/project/</link>
       <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
@@ -49,22 +67,6 @@ Summary The list below displays the achieved objectives:
       
       <guid>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</guid>
       <description>GDPR information are highly specific to the site. You may use a generator, e.g. Datenschutz-Generator</description>
-    </item>
-    
-    <item>
-      <title>Imprint</title>
-      <link>http://cdeck3r.com/instablog/imprint-gdpr/imprint/</link>
-      <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://cdeck3r.com/instablog/imprint-gdpr/imprint/</guid>
-      <description>Information according to § 5 TMG
-first and last name
-address
-Contact: Phone: phone number
-E-Mail: e-mail address
-Responsible for content according to § 55 Abs. 2 RStV: first and last name
-address
-Disclaimer: Content Liability The contents of our pages were created with great care. However, we can not assume any liability for the accuracy, completeness and timeliness of the content. As a service provider we are responsible according to § 7 Abs.</description>
     </item>
     
   </channel>
