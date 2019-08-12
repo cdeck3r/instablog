@@ -112,7 +112,7 @@ doc: hugotheme plantuml
 ## hugo theme install 
 hugotheme:
 ifeq (False,$(HAS_HUGO_THEME))
-	git submodule add ${HUGO_THEME_URL} "themes/${HUGO_THEME}"
+	git submodule add ${HUGO_THEME_URL} "${HUGO_THEME_DIR}"
 endif
 
 ## generate UML diagrams using plantuml

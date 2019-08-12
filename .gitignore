@@ -3,7 +3,7 @@
 slackr/
 plantuml/
 hugo/
-doc_site/themes/
+doc_site/themes/*
 
 #
 .*
