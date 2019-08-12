@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Instablog</title>
+    <link>http://cdeck3r.com/instablog/</link>
+    <description>Recent content on Instablog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://cdeck3r.com/instablog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>http://cdeck3r.com/instablog/post/about/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/about/</guid>
+      <description>In August 2019, the team DramaLamas will take part in the charity rallye BALKAN EXPRESS RALLY. We want to document our trip using Instagram as well as on our blog.
+Important websites
+ Team website DramaLamas: dramalamas.tours Team&amp;rsquo;s Instagram profile: dramalamas.tours2019  </description>
+    </item>
+    
+    <item>
+      <title>Conclusion</title>
+      <link>http://cdeck3r.com/instablog/post/conclusion/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/conclusion/</guid>
+      <description>This section concludes the project.
+Summary The list below displays the achieved objectives:
+&amp;hellip; &amp;hellip;  Conclusion Instablog autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.</description>
+    </item>
+    
+    <item>
+      <title>Project Definition</title>
+      <link>http://cdeck3r.com/instablog/post/project/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/project/</guid>
+      <description>Existing solutions sharing instagram posts within a blog explicitly embedd an post URL. This is a manual effort one has to do for every new instagram post entry. The Instagram JavaScript plugin, Instafeed.js, utilizes Instagram&amp;rsquo;s API and retrieves new posts filtered by a user-defined function. As a result, a single blog post embedding this javascript would display a large list of Instagram post. However, it is unclear how a daily blog is generated which only contains the posts from that day.</description>
+    </item>
+    
+    <item>
+      <title>General Data Protection Regulation (GDPR)</title>
+      <link>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</link>
+      <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</guid>
+      <description>GDPR information are highly specific to the site. You may use a generator, e.g. Datenschutz-Generator</description>
+    </item>
+    
+    <item>
+      <title>Imprint</title>
+      <link>http://cdeck3r.com/instablog/imprint-gdpr/imprint/</link>
+      <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/imprint-gdpr/imprint/</guid>
+      <description>Information according to § 5 TMG
+first and last name
+address
+Contact: Phone: phone number
+E-Mail: e-mail address
+Responsible for content according to § 55 Abs. 2 RStV: first and last name
+address
+Disclaimer: Content Liability The contents of our pages were created with great care. However, we can not assume any liability for the accuracy, completeness and timeliness of the content. As a service provider we are responsible according to § 7 Abs.</description>
+    </item>
+    
+  </channel>
+</rss>

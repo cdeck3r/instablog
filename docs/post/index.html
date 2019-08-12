@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="
+		
+		Server software for automatically creating daily blog posts from Instagram posts.
+		"> 
+    
+	<meta name="author" content=" cdeck3r ">  
+    <base href="http://cdeck3r.com/instablog">
+    <title>Sections</title>
+
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+
+    
+    
+    
+
+    <style>
+    .navbar {
+    border-color: #e7e7e7;
+}
+
+.content-section-a,
+footer,
+.navbar {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.navbar a:link,
+.navbar-default .navbar-nav>li>a {
+  color: #777;
+}
+
+.navbar a:hover,
+.navbar-default .navbar-nav>li>a:hover {
+  color: rgb(51, 51, 51);
+}
+
+.content-section-b {
+  background-color: white;
+  color: #333;
+}
+
+body {
+  color: rgb(51, 51, 51);
+}
+
+.header-container h1,
+.header-container h2,
+.header-container h3,
+.header-container h4 {
+  color: rgb(51, 51, 51);
+}
+
+  </style>
+
+</head>
+<body>
+
+<section id="intro">
+	
+	<div class="intro-header">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+				
+					<div class="intro-message">
+						<h1>Instablog</h1>
+						<h3>Server software for automatically creating daily blog posts from Instagram posts.</h3>
+						<hr class="intro-divider">
+
+						<ul class="list-inline intro-social-buttons">
+						
+
+
+  <li><a href="//github.com/cdeck3r" class="btn btn-default btn-lg" title="GitHub">
+  <i class="fa fa-github"></i>
+  </a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//linkedin.com/in/cdeck3r" title="LinkedIn" class="btn btn-default btn-lg">
+  <i class="fa fa-linkedin"></i>
+  </a></li>
+
+
+
+
+
+
+
+  <li><a href="//xing.com/profile/Christian_Decker10" title="Xing" class="btn btn-default btn-lg">
+  <i class="fa fa-xing"></i>
+  </a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//youtube.com/channel/UCZ5wNVV_E6AA3L3C-mvqwSA" title="YouTube" class="btn btn-default btn-lg">
+  <i class="fa fa-youtube"></i>
+  </a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="//twitter.com/cdeck3r" title="Twitter" class="btn btn-default btn-lg">
+  <i class="fa fa-twitter"></i>
+  </a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <li><a href="mailto:info@cdeck3r.com" title="Email" class="btn btn-default btn-lg">
+  <i class="fa fa-envelope"></i>
+  </a></li>
+
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+</section>
+
+<section id="main">
+
+
+
+	 
+    <div class="content-section-a">
+    
+   
+        <div class="container">
+
+            <div class="row">
+                <div>
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">About</h2>
+                    <p>In August 2019, the team <a href="//dramalamas.tours">DramaLamas</a> will take part in the charity rallye <a href="https://balkan.superlative-adventure.com/balkan-express.html">BALKAN EXPRESS RALLY</a>. We want to document our trip using <a href="//instagram.com">Instagram</a> as well as on our blog.</p>
+
+<p>Important websites</p>
+
+<ul>
+<li>Team website DramaLamas: <a href="//dramalamas.tours">dramalamas.tours</a></li>
+<li>Team&rsquo;s Instagram profile: <a href="//www.instagram.com/dramalamas.tours2019/">dramalamas.tours2019</a></li>
+</ul>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+	
+    <div class="content-section-b">
+    
+   
+        <div class="container">
+
+            <div class="row">
+                <div>
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Project Definition</h2>
+                    
+
+<p>Existing solutions sharing instagram posts within a blog explicitly embedd an post URL. This is a manual effort one has to do for every new instagram post entry. The Instagram JavaScript plugin, <a href="//instafeedjs.com">Instafeed.js</a>, utilizes Instagram&rsquo;s API and retrieves new posts filtered by a user-defined function. As a result, a single blog post embedding this javascript would display a large list of Instagram post. However, it is unclear how a daily blog is generated which only contains the posts from that day.</p>
+
+<h3 id="goal">Goal</h3>
+
+<p>This project shall regularly monitor our <a href="//www.instagram.com/dramalamas.tours2019/">Instagram account</a> and automatically create daily blog posts on <a href="//dramalamas.tours">our website</a>.</p>
+
+<h3 id="approach-objectives">Approach &amp; Objectives</h3>
+
+<ul>
+<li>To setup a github project framework and development environment</li>
+<li>To include a project blog for documentation</li>
+<li>To enable automatic download of new instagram posts filtered by a given date</li>
+<li>To enable the automatic creation of blog posts from instagram posts of that date</li>
+<li>To let the blog post have a URL reference back to the genuine instagram post</li>
+<li>To enable the software to monitor and run the blog post creation on a regular basis, e.g. at a hourly interval</li>
+<li>To be able to single-click deploy the software on a Virtual Private Server</li>
+<li>Optionally: To enable a simple remote monitoring notifying the regular successful or failed run</li>
+</ul>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+	 
+    <div class="content-section-a">
+    
+   
+        <div class="container">
+
+            <div class="row">
+                <div>
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Conclusion</h2>
+                    
+
+<p>This section concludes the project.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>The list below displays the achieved objectives:</p>
+
+<ul class="task-list">
+<li><label><input type="checkbox" disabled class="task-list-item"> &hellip;</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> &hellip;</label></li>
+</ul>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p><a href="//github.com/cdeck3r/instablog">Instablog</a> autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.</p>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+
+</section>
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8" style="padding-left: 0px">
+				<ul class="list-inline">
+					<li>
+						<a class="page-scroll" href="#intro">Up</a>
+					</li>
+					<li class="footer-menu-divider">&sdot;</li>
+						<li>
+							<a href="http://cdeck3r.com/instablog/imprint-gdpr/imprint" >Imprint</a>
+						</li>
+					<li class="footer-menu-divider">&sdot;</li>
+						<li>
+							<a href="http://cdeck3r.com/instablog/imprint-gdpr/gdpr" >GDPR</a>
+						</li>
+				 </ul>
+				 <p class="copyright text-muted small">Copyright &copy; Instablog All Rights Reserved</p>
+			</div>
+            <div class="col-md-4" style="padding-right: 0px">
+				Built with <a href="http://gohugo.io">Hugo</a> and the
+				<a href="https://github.com/cdeck3r/OneDly-Theme">OneDly project</a>
+				theme.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/jquery-1.11.0.js"></script>
+
+
+<script src="/js/jquery.easing.min.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>
+

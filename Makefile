@@ -107,7 +107,7 @@ venv: clean_environment create_environment
 
 ## generate complete doc 
 doc: hugotheme plantuml
-	${HUGO} -c "${DOCS_SITE}/content" -d "${DOCS_DIR}"
+	${HUGO} --config "${DOCS_SITE}/config.toml" --themesDir "${DOCS_SITE}/themes" -c "${DOCS_SITE}/content" -d "${DOCS_DIR}"
 
 ## hugo theme install 
 hugotheme:
@@ -115,10 +115,12 @@ ifeq (False,$(HAS_HUGO_THEME))
 	git submodule add ${HUGO_THEME_URL} "${HUGO_THEME_DIR}"
 endif
 
-## generate UML diagrams using plantuml
-plantuml: ${DOCS_SITE}/content/uml/*.txt
+## generate UML diagrams using plantuml; generate always all diagrams
+plantuml: ${DOCS_SITE}/content/uml/%.txt
+${DOCS_SITE}/content/uml/%.txt:
+	@echo ">>> run plantuml... "
 ifeq (True,$(HAS_JAVA))
-		java -jar plantuml.jar -o "${DOCS_SITE}/static/uml" "${DOCS_SITE}/content/uml"
+		-java -jar "${PLANTUML_JAR}" -tpng -o "${PROJECT_DIR}/${DOCS_SITE}/static/uml" "${DOCS_SITE}/content/uml"
 endif
 
 ## install supplemental tools
