@@ -120,7 +120,7 @@ plantuml: ${DOCS_SITE}/content/uml/%.txt
 ${DOCS_SITE}/content/uml/%.txt:
 	@echo ">>> run plantuml... "
 ifeq (True,$(HAS_JAVA))
-		-java -jar "${PLANTUML_JAR}" -tpng -o "${PROJECT_DIR}/${DOCS_SITE}/static/uml" "${DOCS_SITE}/content/uml"
+		-java -jar "${PLANTUML_JAR}" -tpng -v -o "${PROJECT_DIR}/${DOCS_SITE}/static/uml" "${DOCS_SITE}/content/uml"
 endif
 
 ## install supplemental tools

@@ -1,0 +1,13 @@
+@startuml
+skinparam monochrome true
+skinparam componentStyle uml2
+
+interface "GitHub" as git
+interface "File system" as fs
+interface "HTTP" as http
+
+http - [instacrawler] ..> fs : use
+[instapost] ..> fs : use
+git - [blogpost] ..> fs : use
+
+@enduml

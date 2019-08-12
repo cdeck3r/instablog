@@ -15,7 +15,8 @@ USER root
 #
 RUN apt-get update && apt-get install -y \
    libxml2-dev libxslt-dev python-dev python3-lxml \
-   default-jre
+   default-jre \
+   graphviz 
 
 #
 # Switch back to default user 

@@ -3,7 +3,7 @@ title = "Conclusion"
 description = "Summary, conclusion and next steps"
 date = "2019-08-12"
 author = "Christian Decker"
-sec = 7
+sec = 100
 +++
 
 This section concludes the project.

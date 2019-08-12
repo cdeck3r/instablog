@@ -1,0 +1,17 @@
+@startumlsc_modern
+skinparam monochrome true
+skinparam componentStyle uml2
+
+interface "GitHub" as git
+interface "HTTP" as http
+interface "File System" as fs
+
+http - [instacrawler] 
+[instacrawler] ..> fs : use
+
+fs <.. [instapost] 
+
+[blogpost] ..> fs : use
+[blogpost] - git
+
+@enduml
