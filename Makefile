@@ -54,7 +54,7 @@ endif
 #################################################################################
 
 ## Install Python Dependencies
-requirements: test_environment
+requirements: 
 	pip install --no-cache-dir -U pip setuptools wheel
 	pip install --no-cache-dir -r requirements.txt
 
@@ -105,11 +105,11 @@ clean_environment:
 ## setup a completely new virtualenv venv, deletes an old one
 venv: clean_environment create_environment
 
-## generate complete doc 
+## generate complete doc
 doc: hugotheme plantuml
 	${HUGO} --cleanDestinationDir -v -s "${DOCS_SITE}" -d "${PROJECT_DIR}/${DOCS_DIR}"
 
-## hugo theme install 
+## hugo theme install
 hugotheme:
 ifeq (False,$(HAS_HUGO_THEME))
 	git submodule add ${HUGO_THEME_URL} "${HUGO_THEME_DIR}"
@@ -127,7 +127,7 @@ ifeq (True,$(HAS_JAVA))
 endif
 
 ## install supplemental tools
-init: 
+init:
 	./install_supplementals.sh
 
 #################################################################################
