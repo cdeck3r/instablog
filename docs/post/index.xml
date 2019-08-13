@@ -6,10 +6,22 @@
     <description>Recent content in Sections on Instablog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Aug 2019 19:13:13 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://cdeck3r.com/instablog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MVP</title>
+      <link>http://cdeck3r.com/instablog/post/mvp/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/mvp/</guid>
+      <description>The minimum viable product creates the initial value.
+All Instagram posts of a selected single date shall be listed in a day&amp;rsquo;s blog post on DramaLamas.tours. The blog post shall display the correct date. It shall contain for each Instagram post at least
+ caption date and time image link from the image to Instagram post  Acceptance test
+The MVP is accepted if the functionality above is shown for at least two different dates.</description>
+    </item>
     
     <item>
       <title>Design Concept</title>
@@ -18,7 +30,7 @@
       
       <guid>http://cdeck3r.com/instablog/post/design/</guid>
       <description>This is a brief design sketch of Instablog&amp;rsquo;s components.
- instacrawler: collect URLs from Instagram&amp;rsquo;s profile instapost: download a single Instagram post&amp;rsquo;s data blogpost: create a blogpost from all Instagram posts of a single day  </description>
+ instacrawler: collect URLs from Instagram&amp;rsquo;s profile instapost: download a single Instagram post&amp;rsquo;s data blogpost: create a blogpost from all Instagram posts of a single day  The DramaLamas blog is a jekyll website hosted on GitHub. Updating the blog is a git commit activity.</description>
     </item>
     
     <item>
