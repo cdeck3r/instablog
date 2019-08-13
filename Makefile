@@ -107,7 +107,7 @@ venv: clean_environment create_environment
 
 ## generate complete doc 
 doc: hugotheme plantuml
-	${HUGO} -s "${DOCS_SITE}" -d "${DOCS_DIR}"
+	${HUGO} --cleanDestinationDir -v -s "${DOCS_SITE}" -d "${PROJECT_DIR}/${DOCS_DIR}"
 
 ## hugo theme install 
 hugotheme:
@@ -116,13 +116,12 @@ ifeq (False,$(HAS_HUGO_THEME))
 endif
 
 
-## generate UML diagrams using plantuml; generate always all diagrams
 UML_DIR = ${DOCS_SITE}/content/uml
 UML_SRC       := $(foreach sdir,$(UML_DIR),$(wildcard $(sdir)/*.txt))
 UML_PNG       := $(patsubst %.txt,%.png,$(UML_SRC))
+## generate UML diagrams using plantuml; generate always all diagrams
 plantuml: $(UML_PNG)
 $(UML_DIR)/%.png: $(UML_DIR)/%.txt
-	@echo ">>> run plantuml... "
 ifeq (True,$(HAS_JAVA))
 		-java -jar "${PLANTUML_JAR}" -tpng -v -o "${PROJECT_DIR}/${DOCS_SITE}/content/uml" $+
 endif
