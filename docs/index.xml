@@ -19,8 +19,7 @@
       <guid>http://cdeck3r.com/instablog/post/mvp/</guid>
       <description>The minimum viable product creates the initial value.
 All Instagram posts of a selected single date shall be listed in a day&amp;rsquo;s blog post on DramaLamas.tours. The blog post shall display the correct date. It shall contain for each Instagram post at least
- caption date and time image link from the image to Instagram post  Acceptance test
-The MVP is accepted if the functionality above is shown for at least two different dates.</description>
+ caption date and time image link from the image to Instagram post  Note: Instablog sources a profile&amp;rsquo;s feed. Since the Instagram website shows only up 12 recent posts in a feed, the blog post is limited to those recent posts.</description>
     </item>
     
     <item>
@@ -29,9 +28,9 @@ The MVP is accepted if the functionality above is shown for at least two differe
       <pubDate>Mon, 12 Aug 2019 19:13:13 +0000</pubDate>
       
       <guid>http://cdeck3r.com/instablog/post/components/</guid>
-      <description>Instacrawler Instacrawler collects URLs of posts from an Instagram&amp;rsquo;s profile. It identifies them by their short code - an alphanumeric string, such as BhRpkfqgnsf.
+      <description>instacrawler Instacrawler collects URLs of posts from an Instagram&amp;rsquo;s profile feed. It identifies posts by their short code - an alphanumeric string, such as BhRpkfqgnsf.
 The software component consists of two parts.
- instacrawler.sh Defines the profile URL and the file storing posts&amp;rsquo; shortcodes as .csv file. Afterwards, it calls the python script to do the work. instacrawler.py Downloads the profile website, extracts the shortcodes and stores them in .csv file.</description>
+ instacrawler.sh Defines the profile URL and the file storing posts&amp;rsquo; shortcodes as .csv file. Afterwards, it calls the python script to do the work. instacrawler.py Downloads the profile website, extracts the shortcodes and stores them in .</description>
     </item>
     
     <item>

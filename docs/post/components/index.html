@@ -123,9 +123,9 @@ body {
             <h2 class="section-heading">Components</h2>
             
 
-<h3 id="instacrawler">Instacrawler</h3>
+<h3 id="instacrawler">instacrawler</h3>
 
-<p>Instacrawler collects URLs of posts from an Instagram&rsquo;s profile. It identifies them by their short code - an alphanumeric string, such as <code>BhRpkfqgnsf</code>.</p>
+<p>Instacrawler collects URLs of posts from an Instagram&rsquo;s profile feed. It identifies posts by their short code - an alphanumeric string, such as <code>BhRpkfqgnsf</code>.</p>
 
 <p>The software component consists of two parts.</p>
 
@@ -134,16 +134,18 @@ body {
 <li><code>instacrawler.py</code> Downloads the profile website, extracts the shortcodes and stores them in <code>.csv</code> file.</li>
 </ul>
 
-<p><strong>Invoke instacrawler</strong>. The entry point is always the shell script.</p>
+<p><strong>Invoke instacrawler:</strong> The entry point is always the shell script.</p>
 
 <pre><code class="language-bash">./instacrawler.sh /tmp https://www.instagram.com/koloot.design/
 </code></pre>
 
-<p>This will let the instacrawler download the profile of koloot.design and store all found posts as shortcodes in the <code>/tmp/shortcodes.csv</code>. Note, the filename is defined <em>within</em> the script in order to hide the components&rsquo; data sharing via the filesystem from the user.</p>
+<p>This will let the instacrawler download the profile&rsquo;s feed of koloot.design and store all found posts as shortcodes in the <code>/tmp/shortcodes.csv</code>. Note, the filename is defined <em>within</em> the script in order to hide the components&rsquo; data sharing via the filesystem from the user.</p>
 
-<h3 id="instapost">Instapost</h3>
+<p><strong>Note:</strong> Instagram shows only up 12 recent posts in a profile&rsquo;s feed. The number of shortcodes is therefore limited to 12 recent posts.</p>
 
-<p>Instapost downloads Instagram post information. A shortcode, e.g. <code>BhRpkfqgnsf</code>, acquired from Instacrawler refers to a single post&rsquo;s URL in the form of <code>https:/instagram.com/p/BhRpkfqgnsf</code>.</p>
+<h3 id="instapost">instapost</h3>
+
+<p>Instapost downloads Instagram post information. A shortcode, e.g. <code>BhRpkfqgnsf</code>, acquired from Instacrawler refers to a single post&rsquo;s URL in the form of <code>https://instagram.com/p/BhRpkfqgnsf</code>.</p>
 
 <p>The software component consists of two parts.</p>
 
@@ -152,16 +154,37 @@ body {
 <li><code>instapost.py</code> Downloads post for each shortcode in the shortcode file and extracts relevant information and stores it in a <code>.csv</code> file.</li>
 </ul>
 
-<p><strong>Invoke instapost</strong>. The entry point is always the shell script.</p>
+<p><strong>Invoke instapost:</strong> The entry point is always the shell script.</p>
 
 <pre><code class="language-bash">./instapost.sh /tmp
 </code></pre>
 
 <p>Only a data directory, here <code>/tmp</code>, needs to be defined. The script assumes <em>all data files</em> to stay in this data directory. The input shortcode file is assumed to be <code>shortcodes.csv</code>. The output file storing the relevant post information is <code>postinfo.csv</code>.</p>
 
-<h3 id="instablog">instablog</h3>
+<h3 id="blogpost">blogpost</h3>
 
 <p><em>tbd.</em></p>
+
+<h3 id="instablog">instablog</h3>
+
+<p>The main script for automatically creating daily blog posts from Instagram posts. This script may run as a cronjob.</p>
+
+<p><code>instablog.sh</code> Defines basic interface parameters:</p>
+
+<ul>
+<li>data directory: storing all intermediate data for the exchange between instablog&rsquo;s other software components.</li>
+<li>profile URL: the Instagram profile URL sourcing the feed data from</li>
+<li>github repo URL: the URL to the github repo providing the jekyll blog</li>
+</ul>
+
+<p><strong>Default values:</strong> If no params are provided, instablog will fall back to default values; see <a href="https://github.com/cdeck3r/instablog/blob/master/scripts/instablog.sh"><code>instablog.sh</code></a>.</p>
+
+<p><strong>Invoke instablog:</strong></p>
+
+<pre><code class="language-bash">./instablog.sh /tmp https://www.instagram.com/koloot.design/ https://github.com/dramalamas/dramalamas.github.io
+</code></pre>
+
+<p>Credentials to update the github repo are stored in an external <code>.env</code> file.</p>
 
         </div>
     </div>
