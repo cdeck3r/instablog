@@ -43,3 +43,5 @@ Explore brings up posts matching a tag. The tag `#iceland` brings up a page with
 This idea is simple and effective. After each run of the `instacrawler` component, it simply adds the current posts to the ones from the previous run. Run after run, it builds up history of posts. The frequency of the crawler's runs depends on how often we would post new images on Instagram. The recent post limit is only valid for a single website lookup. If the crawler runs frequently enough, the risk is low it would miss any post.
 
 Option 3 is easy to implement. The `instablog` main script records the results file, that is the `shortcodes.csv` file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the `instapost` script for the next step.
+
+One thing left. Option 3 only works from the day on when `instablog` starts. It can't restore a feed history from the past. When `instablog` starts the regular operation from the first time, it initializes the feed history. Subsequently, it must frequently run with no longer breaks to keep up with the feed history.
