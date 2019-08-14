@@ -21,10 +21,23 @@ The main script for automatically creating daily blog posts from Instagram posts
 **Invoke instablog:**
 
 ``` bash
-./instablog.sh /tmp https://www.instagram.com/koloot.design/ https://github.com/dramalamas/dramalamas.github.io
-```
+$ ./instablog.sh --help
+Usage: ./instablog.sh <options>
 
-Credentials to update the github repo are stored in an external `.env` file.
+Options:
+
+-h | --help              This message
+-g | --github            Github blog URL
+[-r | --dataroot]        directory to exchange data betw. components
+[-p | --profile]         Instagram profile URL
+[-d | --postdate]        blog post date, format: yyyy-mm-dd
+
+Default DATAROOT: /tmp
+Default PROFILE_URL: https://www.instagram.com/koloot.design/
+Default POST_DATE: 2019-08-14
+
+```
+You need to specify at least the blog's github URL. Credentials to update the github repo are stored in an external `.env` file.
 
 ### Feed History and the "Recent Posts" Limit
 

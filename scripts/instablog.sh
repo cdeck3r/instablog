@@ -18,27 +18,13 @@ cd $SCRIPT_DIR
 # the script's name
 SCRIPT_NAME=$0
 # this directory stores intermediate files and data
-DATAROOT=$1
+DATAROOT="/tmp" # default value
 # Instagram profile URL
-PROFILE_URL=$2
-
-# include common funcs
-source ./funcs.sh
-
-## var test; set default values
-if [ -z "$DATAROOT" ]; then
-    log_echo "WARN" "DATAROOT directory not set"
-	# set default value
-	DATAROOT="/tmp"
-    log_echo "INFO" "Default DATAROOT directory set: "$DATAROOT""
-fi
-
-if [ -z "$PROFILE_URL" ]; then
-    log_echo "WARN" "No Instagram profile URL defined"
-    # set default value
-	PROFILE_URL="https://www.instagram.com/koloot.design/"
-    log_echo "INFO" "Default Instagram profile URL set: "$PROFILE_URL""
-fi
+PROFILE_URL="https://www.instagram.com/koloot.design/" # default value
+# Github blog URL
+GITHUB_URL="https://github.com/dramalamas/dramalamas.github.io"
+# Blog post date
+POST_DATE=$(date '+%Y-%m-%d') # today's date, format: yyyy-mm-dd
 
 #
 # tools
@@ -47,13 +33,87 @@ INSTACRAWLER="$SCRIPT_DIR"/instacrawler.sh
 INSTAPOST="$SCRIPT_DIR"/instapost.sh
 #BLOGPOST="$SCRIPT_DIR"/blogpost.sh
 
+# include common funcs
+source ./funcs.sh
 
 ##############
 # Helper functions
 ##############
+OPT_CNT=0
+usage()
+{
+    echo -e "Usage: "$SCRIPT_NAME" <options>"
+    echo
+    echo -e "Options:"
+    echo
+    echo -e "-h | --help\t\t This message"
+    echo -e "-g | --github\t\t Github blog URL"
+    echo -e "[-r | --dataroot]\t directory to exchange data betw. components"
+    echo -e "[-p | --profile]\t Instagram profile URL"
+    echo -e "[-d | --postdate]\t blog post date, format: yyyy-mm-dd"
+    echo ""
+	echo -e "Default DATAROOT: ${DATAROOT}"
+	echo -e "Default PROFILE_URL: ${PROFILE_URL}"
+    #echo -e "Default GITHUB_URL: ${GITHUB_URL}"
+    echo -e "Default POST_DATE: ${POST_DATE}"
+    echo -e ""
+}
 
-# ...
+####################################################
+# parse params
+####################################################
+while :; do
+	case $1 in
+        -h|-\?|--help)   # Call a "usage" function to display a synopsis, then exit.
+            usage
+            exit 1
+            ;;
+        -r|--dataroot)
+            DATAROOT=$2
+            OPT_CNT=$((OPT_CNT + 1))
+            ;;
+        -p|--profile)
+            PROFILE_URL=$2
+            OPT_CNT=$((OPT_CNT + 1))
+            ;;
+        -g|--github)
+            #GITHUB_URL=$2
+            OPT_CNT=$((OPT_CNT + 1))
+            ;;
+        -d|--postdate)
+            POST_DATE=$2
+            OPT_CNT=$((OPT_CNT + 1))
+            ;;
+        -?*)
+            printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+            ;;
+        *)  # Default case: no more options; test required param and break out
+			if [ "$OPT_CNT" -ge 1 ]
+			then
+                if [ -z $GITHUB_URL ]; then
+                    echo -e "ERROR: Please specify at least the github blog URL"
+                    exit 1
+                fi
+                break
+			else
+				echo -e "ERROR: Too few options provided."
+                echo -e "Please specify at least an option."
+                echo -e ""
+				usage
+				exit 1
+			fi
+			;;
+    esac
+    shift
+done
 
+# print the params config
+log_echo "INFO" "DATAROOT: ${DATAROOT}"
+log_echo "INFO" "PROFILE_URL: ${PROFILE_URL}"
+log_echo "INFO" "GITHUB_URL: ${GITHUB_URL}"
+log_echo "INFO" "POST_DATE: ${POST_DATE}"
+
+# let's start
 log_echo "INFO" "instablog starts"
 
 ##################################
