@@ -139,12 +139,26 @@ body {
 
 <p><strong>Invoke instablog:</strong></p>
 
-<pre><code class="language-bash">./instablog.sh /tmp https://www.instagram.com/koloot.design/ https://github.com/dramalamas/dramalamas.github.io
+<pre><code class="language-bash">$ ./instablog.sh --help
+Usage: ./instablog.sh &lt;options&gt;
+
+Options:
+
+-h | --help              This message
+-g | --github            Github blog URL
+[-r | --dataroot]        directory to exchange data betw. components
+[-p | --profile]         Instagram profile URL
+[-d | --postdate]        blog post date, format: yyyy-mm-dd
+
+Default DATAROOT: /tmp
+Default PROFILE_URL: https://www.instagram.com/koloot.design/
+Default POST_DATE: 2019-08-14
+
 </code></pre>
 
-<p>Credentials to update the github repo are stored in an external <code>.env</code> file.</p>
+<p>You need to specify at least the blog&rsquo;s github URL. Credentials to update the github repo are stored in an external <code>.env</code> file.</p>
 
-<h3 id="recent-posts-limit">&ldquo;Recent Posts&rdquo; Limit</h3>
+<h3 id="feed-history-and-the-recent-posts-limit">Feed History and the &ldquo;Recent Posts&rdquo; Limit</h3>
 
 <p>The Instagram profile feed is limited to only recent posts, which Instagram defines to be 12 posts.</p>
 
@@ -161,6 +175,8 @@ body {
 <p>This idea is simple and effective. After each run of the <code>instacrawler</code> component, it simply adds the current posts to the ones from the previous run. Run after run, it builds up history of posts. The frequency of the crawler&rsquo;s runs depends on how often we would post new images on Instagram. The recent post limit is only valid for a single website lookup. If the crawler runs frequently enough, the risk is low it would miss any post.</p>
 
 <p>Option 3 is easy to implement. The <code>instablog</code> main script records the results file, that is the <code>shortcodes.csv</code> file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the <code>instapost</code> script for the next step.</p>
+
+<p>One thing left. Option 3 only works from the day on when <code>instablog</code> starts. It can&rsquo;t restore a feed history from the past. When <code>instablog</code> starts the regular operation from the first time, it initializes the feed history. Subsequently, it must frequently run with no longer breaks to keep up with the feed history.</p>
 
         </div>
     </div>
