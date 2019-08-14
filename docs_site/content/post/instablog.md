@@ -26,7 +26,7 @@ The main script for automatically creating daily blog posts from Instagram posts
 
 Credentials to update the github repo are stored in an external `.env` file.
 
-### "Recent Posts" Limit
+### Feed History and the "Recent Posts" Limit
 
 The Instagram profile feed is limited to only recent posts, which Instagram defines to be 12 posts.
 

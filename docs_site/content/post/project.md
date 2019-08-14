@@ -24,6 +24,15 @@ New posts on our [Instagram account](//www.instagram.com/dramalamas.tours2019/) 
 * To be able to single-click deploy the software on a Virtual Private Server
 * Optionally: To enable a simple remote monitoring notifying the regular successful or failed run
 
+### Valueable Contributions
+
+Instablog has some features, where it may have an advantage over alternative solutions.
+
+* Keeps track of the complete feed history
+* Highly modular and easy to extend because of a file system based interface using `.csv` files
+
+However, instablog requires a Linux server to run. One may think to parasitically run instablog on [Travis](https://travis-ci.org/). 
+
 ### Alternative Solutions
 
 Other options of Instagram-Blog-crossposting include
@@ -37,4 +46,3 @@ Other options of Instagram-Blog-crossposting include
 * Open Source, e.g. [Syncing Instagram posts to a Ghost blog](https://thomasclowes.com/syncing-instagram-posts-to-a-ghost-blog/)
     * Pro: existing code base, quick start for own projects
     * Con: limited to specific blog system, still requires customization effort
-    
