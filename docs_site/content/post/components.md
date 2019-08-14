@@ -14,7 +14,7 @@ The software component consists of two parts.
 * `instacrawler.sh` Defines the profile URL and the file storing posts' shortcodes as `.csv` file. Afterwards, it calls the python script to do the work.
 * `instacrawler.py` Downloads the profile website, extracts the shortcodes and stores them in `.csv` file.
 
-**Invoke instacrawler**. The entry point is always the shell script.
+**Invoke instacrawler:** The entry point is always the shell script.
 
 ``` bash
 ./instacrawler.sh /tmp https://www.instagram.com/koloot.design/
@@ -34,7 +34,7 @@ The software component consists of two parts.
 * `instapost.sh` Defines the file storing relevant Instagram post information as `.csv` file. Afterwards, it calls the python script to do the work.
 * `instapost.py` Downloads post for each shortcode in the shortcode file and extracts relevant information and stores it in a `.csv` file.
 
-**Invoke instapost**. The entry point is always the shell script.
+**Invoke instapost:** The entry point is always the shell script.
 
 ``` bash
 ./instapost.sh /tmp
@@ -43,11 +43,27 @@ The software component consists of two parts.
 Only a data directory, here `/tmp`, needs to be defined. The script assumes _all data files_ to stay in this data directory. The input shortcode file is assumed to be `shortcodes.csv`. The output file storing the relevant post information is `postinfo.csv`.
 
 
-### instablog
+### blogpost
 
 _tbd._
 
 
 ### instablog
 
-_tbd._
+The main script for automatically creating daily blog posts from Instagram posts. This script may run as a cronjob.
+
+`instablog.sh` Defines basic interface parameters:
+
+* data directory: storing all intermediate data for the exchange between instablog's other software components.
+* profile URL: the Instagram profile URL sourcing the feed data from
+* github repo URL: the URL to the github repo providing the jekyll blog
+
+**Default values:** If no params are provided, instablog will fall back to default values; see [`instablog.sh`](https://github.com/cdeck3r/instablog/blob/master/scripts/instablog.sh).
+
+**Invoke instablog:**
+
+``` bash
+./instablog.sh /tmp https://www.instagram.com/koloot.design/ https://github.com/dramalamas/dramalamas.github.io
+```
+
+Credentials to update the github repo are stored in an external `.env` file.
