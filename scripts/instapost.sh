@@ -17,11 +17,11 @@ cd $SCRIPT_DIR
 
 # the script's name
 SCRIPT_NAME=$0
-# this directory stores result of all runs, e.g. /tmp/iotdata
+# this directory stores intermediate files and data
 DATAROOT=$1
-# the name of the dropbox directory where the url_list is found
+# the name of the file storing posts' shortcodes
 DATAFILE_SHORTCODES="$DATAROOT"/shortcodes.csv
-# Whether it is the initial run of data quality report
+# File path containing all relevant post information
 DATAFILE_POSTINFO="$DATAROOT"/postinfo.csv
 
 #

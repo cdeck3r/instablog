@@ -17,11 +17,11 @@ cd $SCRIPT_DIR
 
 # the script's name
 SCRIPT_NAME=$0
-# this directory stores result of all runs, e.g. /tmp/iotdata
+# this directory stores intermediate files and data
 DATAROOT=$1
-# the name of the dropbox directory where the url_list is found
+# the name of the file storing posts' shortcodes
 DATAFILE="$DATAROOT"/shortcodes.csv
-# Whether it is the initial run of data quality report
+# Instagram profile URL containing the feed
 PROFILE_URL=$2
 
 #
