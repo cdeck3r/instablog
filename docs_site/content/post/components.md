@@ -20,11 +20,26 @@ The software component consists of two parts.
 ./instacrawler.sh /tmp https://www.instagram.com/koloot.design/
 ```
 
-This will let the instacrawler download the profile of koloot.design and store all found posts as shortcodes in the `/tmp/shortcodes.csv`. Note, the filename is defined _within_ the script in order to hide the components' data sharing via the filesystem from the user. 
+This will let the instacrawler download the profile of koloot.design and store all found posts as shortcodes in the `/tmp/shortcodes.csv`. Note, the filename is defined _within_ the script in order to hide the components' data sharing via the filesystem from the user.
 
 ### Instapost
 
-_tbd._
+Instapost downloads Instagram post information. A shortcode, e.g. `BhRpkfqgnsf`, acquired from Instacrawler refers to a single post's URL in the form of `https:/instagram.com/p/BhRpkfqgnsf`.
+
+
+The software component consists of two parts.
+
+* `instapost.sh` Defines the file storing relevant Instagram post information as `.csv` file. Afterwards, it calls the python script to do the work.
+* `instapost.py` Downloads post for each shortcode in the shortcode file and extracts relevant information and stores it in a `.csv` file.
+
+**Invoke instapost**. The entry point is always the shell script.
+
+``` bash
+./instapost.sh /tmp
+```
+
+Only a data directory, here `/tmp`, needs to be defined. The script assumes _all data files_ to stay in this data directory. The input shortcode file is assumed to be `shortcodes.csv`. The output file storing the relevant post information is `postinfo.csv`.
+
 
 ### instablog
 
