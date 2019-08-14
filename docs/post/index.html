@@ -252,7 +252,7 @@ body {
 
 <h3 id="goal">Goal</h3>
 
-<p>This project shall regularly monitor our <a href="//www.instagram.com/dramalamas.tours2019/">Instagram account</a> and automatically create daily blog posts on <a href="//dramalamas.tours">our website</a>.</p>
+<p>New posts on our <a href="//www.instagram.com/dramalamas.tours2019/">Instagram account</a> shall automaically appear as daily blog posts on <a href="//dramalamas.tours">our website</a>.</p>
 
 <h3 id="approach-objectives">Approach &amp; Objectives</h3>
 
@@ -351,6 +351,67 @@ Updating the blog is a git commit activity.</p>
                 <div>
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
+                    <h2 class="section-heading">Components</h2>
+                    
+
+<h3 id="instacrawler">Instacrawler</h3>
+
+<p>Instacrawler collects URLs of posts from an Instagram&rsquo;s profile. It identifies them by their short code - an alphanumeric string, such as <code>BhRpkfqgnsf</code>.</p>
+
+<p>The software component consists of two parts.</p>
+
+<ul>
+<li><code>instacrawler.sh</code> Defines the profile URL and the file storing posts&rsquo; shortcodes as <code>.csv</code> file. Afterwards, it calls the python script to do the work.</li>
+<li><code>instacrawler.py</code> Downloads the profile website, extracts the shortcodes and stores them in <code>.csv</code> file.</li>
+</ul>
+
+<p><strong>Invoke instacrawler</strong>. The entry point is always the shell script.</p>
+
+<pre><code class="language-bash">./instacrawler.sh /tmp https://www.instagram.com/koloot.design/
+</code></pre>
+
+<p>This will let the instacrawler download the profile of koloot.design and store all found posts as shortcodes in the <code>/tmp/shortcodes.csv</code>. Note, the filename is defined <em>within</em> the script in order to hide the components&rsquo; data sharing via the filesystem from the user.</p>
+
+<h3 id="instapost">Instapost</h3>
+
+<p>Instapost downloads Instagram post information. A shortcode, e.g. <code>BhRpkfqgnsf</code>, acquired from Instacrawler refers to a single post&rsquo;s URL in the form of <code>https:/instagram.com/p/BhRpkfqgnsf</code>.</p>
+
+<p>The software component consists of two parts.</p>
+
+<ul>
+<li><code>instapost.sh</code> Defines the file storing relevant Instagram post information as <code>.csv</code> file. Afterwards, it calls the python script to do the work.</li>
+<li><code>instapost.py</code> Downloads post for each shortcode in the shortcode file and extracts relevant information and stores it in a <code>.csv</code> file.</li>
+</ul>
+
+<p><strong>Invoke instapost</strong>. The entry point is always the shell script.</p>
+
+<pre><code class="language-bash">./instapost.sh /tmp
+</code></pre>
+
+<p>Only a data directory, here <code>/tmp</code>, needs to be defined. The script assumes <em>all data files</em> to stay in this data directory. The input shortcode file is assumed to be <code>shortcodes.csv</code>. The output file storing the relevant post information is <code>postinfo.csv</code>.</p>
+
+<h3 id="instablog">instablog</h3>
+
+<p><em>tbd.</em></p>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+	
+    <div class="content-section-b">
+    
+   
+        <div class="container">
+
+            <div class="row">
+                <div>
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
                     <h2 class="section-heading">Conclusion</h2>
                     
 
@@ -368,6 +429,14 @@ Updating the blog is a git commit activity.</p>
 <h3 id="conclusion">Conclusion</h3>
 
 <p><a href="//github.com/cdeck3r/instablog">Instablog</a> autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.</p>
+
+<h3 id="final-note">Final Note</h3>
+
+<p>I took this exercise as an test case how fast I develop a small end-to-end software. In particular, this encompasses the use of Docker, Makefile, various scripting languages, version control, parallel documentation and many other development activities.</p>
+
+<p>Instablog runs unattended on a server on the Internet. The software is split into different small components. It is kept intentionelly lean by using the filesystem as middleware between components. I utilized the approach of <a href="https://en.wikipedia.org/wiki/Convention_over_configuration">convention over configuration</a>, not only to speed up development, but to achieve resilience, too.</p>
+
+<p>Still, lot&rsquo;s of things are missing. The shell scripts do not check for parameters when invoked. There are no unit tests at all. It is unclear what happens, if the scripts meet a video or other content other than images.</p>
 
                 </div>
             </div>

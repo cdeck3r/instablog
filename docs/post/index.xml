@@ -24,6 +24,17 @@ The MVP is accepted if the functionality above is shown for at least two differe
     </item>
     
     <item>
+      <title>Components</title>
+      <link>http://cdeck3r.com/instablog/post/components/</link>
+      <pubDate>Mon, 12 Aug 2019 19:13:13 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/components/</guid>
+      <description>Instacrawler Instacrawler collects URLs of posts from an Instagram&amp;rsquo;s profile. It identifies them by their short code - an alphanumeric string, such as BhRpkfqgnsf.
+The software component consists of two parts.
+ instacrawler.sh Defines the profile URL and the file storing posts&amp;rsquo; shortcodes as .csv file. Afterwards, it calls the python script to do the work. instacrawler.py Downloads the profile website, extracts the shortcodes and stores them in .csv file.</description>
+    </item>
+    
+    <item>
       <title>Design Concept</title>
       <link>http://cdeck3r.com/instablog/post/design/</link>
       <pubDate>Mon, 12 Aug 2019 19:13:13 +0000</pubDate>
@@ -52,7 +63,8 @@ Important websites
       <guid>http://cdeck3r.com/instablog/post/conclusion/</guid>
       <description>This section concludes the project.
 Summary The list below displays the achieved objectives:
-&amp;hellip; &amp;hellip;  Conclusion Instablog autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.</description>
+&amp;hellip; &amp;hellip;  Conclusion Instablog autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.
+Final Note I took this exercise as an test case how fast I develop a small end-to-end software. In particular, this encompasses the use of Docker, Makefile, various scripting languages, version control, parallel documentation and many other development activities.</description>
     </item>
     
     <item>

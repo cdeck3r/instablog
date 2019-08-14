@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="
-		Goals, objectives and approach
+		System design
 		"> 
     
 	<meta name="author" content=" cdeck3r ">  
     <base href="http://cdeck3r.com/instablog/">
-    <title>Project Definition</title>
+    <title>Components</title>
 
     
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -120,27 +120,48 @@ body {
           <div>
             <hr class="section-heading-spacer">
             <div class="clearfix"></div>
-            <h2 class="section-heading">Project Definition</h2>
+            <h2 class="section-heading">Components</h2>
             
 
-<p>Existing solutions sharing instagram posts within a blog explicitly embedd an post URL. This is a manual effort one has to do for every new instagram post entry. The Instagram JavaScript plugin, <a href="//instafeedjs.com">Instafeed.js</a>, utilizes Instagram&rsquo;s API and retrieves new posts filtered by a user-defined function. As a result, a single blog post embedding this javascript would display a large list of Instagram post. However, it is unclear how a daily blog is generated which only contains the posts from that day.</p>
+<h3 id="instacrawler">Instacrawler</h3>
 
-<h3 id="goal">Goal</h3>
+<p>Instacrawler collects URLs of posts from an Instagram&rsquo;s profile. It identifies them by their short code - an alphanumeric string, such as <code>BhRpkfqgnsf</code>.</p>
 
-<p>New posts on our <a href="//www.instagram.com/dramalamas.tours2019/">Instagram account</a> shall automaically appear as daily blog posts on <a href="//dramalamas.tours">our website</a>.</p>
-
-<h3 id="approach-objectives">Approach &amp; Objectives</h3>
+<p>The software component consists of two parts.</p>
 
 <ul>
-<li>To setup a github project framework and development environment</li>
-<li>To include a project blog for documentation</li>
-<li>To enable automatic download of new instagram posts filtered by a given date</li>
-<li>To enable the automatic creation of blog posts from instagram posts of that date</li>
-<li>To let the blog post have a URL reference back to the genuine instagram post</li>
-<li>To enable the software to monitor and run the blog post creation on a regular basis, e.g. at a hourly interval</li>
-<li>To be able to single-click deploy the software on a Virtual Private Server</li>
-<li>Optionally: To enable a simple remote monitoring notifying the regular successful or failed run</li>
+<li><code>instacrawler.sh</code> Defines the profile URL and the file storing posts&rsquo; shortcodes as <code>.csv</code> file. Afterwards, it calls the python script to do the work.</li>
+<li><code>instacrawler.py</code> Downloads the profile website, extracts the shortcodes and stores them in <code>.csv</code> file.</li>
 </ul>
+
+<p><strong>Invoke instacrawler</strong>. The entry point is always the shell script.</p>
+
+<pre><code class="language-bash">./instacrawler.sh /tmp https://www.instagram.com/koloot.design/
+</code></pre>
+
+<p>This will let the instacrawler download the profile of koloot.design and store all found posts as shortcodes in the <code>/tmp/shortcodes.csv</code>. Note, the filename is defined <em>within</em> the script in order to hide the components&rsquo; data sharing via the filesystem from the user.</p>
+
+<h3 id="instapost">Instapost</h3>
+
+<p>Instapost downloads Instagram post information. A shortcode, e.g. <code>BhRpkfqgnsf</code>, acquired from Instacrawler refers to a single post&rsquo;s URL in the form of <code>https:/instagram.com/p/BhRpkfqgnsf</code>.</p>
+
+<p>The software component consists of two parts.</p>
+
+<ul>
+<li><code>instapost.sh</code> Defines the file storing relevant Instagram post information as <code>.csv</code> file. Afterwards, it calls the python script to do the work.</li>
+<li><code>instapost.py</code> Downloads post for each shortcode in the shortcode file and extracts relevant information and stores it in a <code>.csv</code> file.</li>
+</ul>
+
+<p><strong>Invoke instapost</strong>. The entry point is always the shell script.</p>
+
+<pre><code class="language-bash">./instapost.sh /tmp
+</code></pre>
+
+<p>Only a data directory, here <code>/tmp</code>, needs to be defined. The script assumes <em>all data files</em> to stay in this data directory. The input shortcode file is assumed to be <code>shortcodes.csv</code>. The output file storing the relevant post information is <code>postinfo.csv</code>.</p>
+
+<h3 id="instablog">instablog</h3>
+
+<p><em>tbd.</em></p>
 
         </div>
     </div>
