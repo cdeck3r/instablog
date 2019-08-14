@@ -10,16 +10,16 @@ Existing solutions sharing instagram posts within a blog explicitly embedd an po
 
 ### Goal
 
-This project shall regularly monitor our [Instagram account](//www.instagram.com/dramalamas.tours2019/) and automatically create daily blog posts on [our website](//dramalamas.tours).
+New posts on our [Instagram account](//www.instagram.com/dramalamas.tours2019/) shall automaically appear as daily blog posts on [our website](//dramalamas.tours).
+
 
 ### Approach & Objectives
 
-* To setup a github project framework and development environment 
+* To setup a github project framework and development environment
 * To include a project blog for documentation
 * To enable automatic download of new instagram posts filtered by a given date
 * To enable the automatic creation of blog posts from instagram posts of that date
-* To let the blog post have a URL reference back to the genuine instagram post 
+* To let the blog post have a URL reference back to the genuine instagram post
 * To enable the software to monitor and run the blog post creation on a regular basis, e.g. at a hourly interval
 * To be able to single-click deploy the software on a Virtual Private Server
 * Optionally: To enable a simple remote monitoring notifying the regular successful or failed run
-
