@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://cdeck3r.com/instablog/imprint-gdpr/</loc>
+    <lastmod>2019-08-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</loc>
+    <lastmod>2019-08-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://cdeck3r.com/instablog/</loc>
     <lastmod>2019-08-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -34,11 +44,6 @@
   </url>
   
   <url>
-    <loc>http://cdeck3r.com/instablog/imprint-gdpr/</loc>
-    <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://cdeck3r.com/instablog/post/about/</loc>
     <lastmod>2019-08-12T00:00:00+00:00</lastmod>
   </url>
@@ -56,11 +61,6 @@
   <url>
     <loc>http://cdeck3r.com/instablog/post/project/</loc>
     <lastmod>2019-08-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</loc>
-    <lastmod>2019-08-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>

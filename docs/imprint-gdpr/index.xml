@@ -6,10 +6,19 @@
     <description>Recent content on Instablog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://cdeck3r.com/instablog/imprint-gdpr/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>General Data Protection Regulation (GDPR)</title>
+      <link>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</link>
+      <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</guid>
+      <description>Datenschutzerklärung Einleitung Mit der folgenden Datenschutzerklärung möchten wir Sie darüber aufklären, welche Arten Ihrer personenbezogenen Daten (nachfolgend auch kurz als &amp;ldquo;Daten“ bezeichnet) wir zu welchen Zwecken und in welchem Umfang verarbeiten. Die Datenschutzerklärung gilt für alle von uns durchgeführten Verarbeitungen personenbezogener Daten, sowohl im Rahmen der Erbringung unserer Leistungen als auch insbesondere auf unseren Webseiten, in mobilen Applikationen sowie innerhalb externer Onlinepräsenzen, wie z.B. unserer Social-Media-Profile (nachfolgend zusammenfassend bezeichnet als &amp;ldquo;Onlineangebot“).</description>
+    </item>
     
     <item>
       <title>Imprint</title>
@@ -27,15 +36,6 @@ Responsible for content according to § 55 Abs. 2 RStV: Christian Decker
 Danziger Str. 6
 71034 Böblingen
 Disclaimer: Content Liability The contents of our pages were created with great care. However, we can not assume any liability for the accuracy, completeness and timeliness of the content. As a service provider we are responsible according to § 7 Abs.</description>
-    </item>
-    
-    <item>
-      <title>General Data Protection Regulation (GDPR)</title>
-      <link>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</link>
-      <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</guid>
-      <description>GDPR information are highly specific to the site. You may use a generator, e.g. Datenschutz-Generator</description>
     </item>
     
   </channel>

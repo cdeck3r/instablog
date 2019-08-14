@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>General Data Protection Regulation (GDPR)</title>
+      <link>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</link>
+      <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</guid>
+      <description>Datenschutzerklärung Einleitung Mit der folgenden Datenschutzerklärung möchten wir Sie darüber aufklären, welche Arten Ihrer personenbezogenen Daten (nachfolgend auch kurz als &amp;ldquo;Daten“ bezeichnet) wir zu welchen Zwecken und in welchem Umfang verarbeiten. Die Datenschutzerklärung gilt für alle von uns durchgeführten Verarbeitungen personenbezogener Daten, sowohl im Rahmen der Erbringung unserer Leistungen als auch insbesondere auf unseren Webseiten, in mobilen Applikationen sowie innerhalb externer Onlinepräsenzen, wie z.B. unserer Social-Media-Profile (nachfolgend zusammenfassend bezeichnet als &amp;ldquo;Onlineangebot“).</description>
+    </item>
+    
+    <item>
       <title>instablog: Main Script</title>
       <link>http://cdeck3r.com/instablog/post/instablog/</link>
       <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
@@ -102,15 +111,6 @@ Disclaimer: Content Liability The contents of our pages were created with great 
       
       <guid>http://cdeck3r.com/instablog/post/project/</guid>
       <description>Existing solutions sharing instagram posts within a blog explicitly embedd an post URL. This is a manual effort one has to do for every new instagram post entry. The Instagram JavaScript plugin, Instafeed.js, utilizes Instagram&amp;rsquo;s API and retrieves new posts filtered by a user-defined function. As a result, a single blog post embedding this javascript would display a large list of Instagram post. However, it is unclear how a daily blog is generated which only contains the posts from that day.</description>
-    </item>
-    
-    <item>
-      <title>General Data Protection Regulation (GDPR)</title>
-      <link>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</link>
-      <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://cdeck3r.com/instablog/imprint-gdpr/gdpr/</guid>
-      <description>GDPR information are highly specific to the site. You may use a generator, e.g. Datenschutz-Generator</description>
     </item>
     
   </channel>
