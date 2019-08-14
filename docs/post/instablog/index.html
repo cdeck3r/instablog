@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="
-		System design
+		Details of the instablog main script
 		"> 
     
 	<meta name="author" content=" cdeck3r ">  
     <base href="http://cdeck3r.com/instablog/">
-    <title>Components</title>
+    <title>instablog: Main Script</title>
 
     
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -120,50 +120,47 @@ body {
           <div>
             <hr class="section-heading-spacer">
             <div class="clearfix"></div>
-            <h2 class="section-heading">Components</h2>
+            <h2 class="section-heading">instablog: Main Script</h2>
             
 
-<h3 id="instacrawler">instacrawler</h3>
+<h3 id="instablog">instablog</h3>
 
-<p>Instacrawler collects URLs of posts from an Instagram&rsquo;s profile feed. It identifies posts by their short code - an alphanumeric string, such as <code>BhRpkfqgnsf</code>.</p>
+<p>The main script for automatically creating daily blog posts from Instagram posts. This script may run as a cronjob.</p>
 
-<p>The software component consists of two parts.</p>
-
-<ul>
-<li><code>instacrawler.sh</code> Defines the profile URL and the file storing posts&rsquo; shortcodes as <code>.csv</code> file. Afterwards, it calls the python script to do the work.</li>
-<li><code>instacrawler.py</code> Downloads the profile website, extracts the shortcodes and stores them in <code>.csv</code> file.</li>
-</ul>
-
-<p><strong>Invoke instacrawler:</strong> The entry point is always the shell script.</p>
-
-<pre><code class="language-bash">./instacrawler.sh /tmp https://www.instagram.com/koloot.design/
-</code></pre>
-
-<p>This will let the instacrawler download the profile&rsquo;s feed of koloot.design and store all found posts as shortcodes in the <code>/tmp/shortcodes.csv</code>. Note, the filename is defined <em>within</em> the script in order to hide the components&rsquo; data sharing via the filesystem from the user.</p>
-
-<p><strong>Note:</strong> Instagram shows only up 12 recent posts in a profile&rsquo;s feed. The number of shortcodes is therefore limited to 12 recent posts.</p>
-
-<h3 id="instapost">instapost</h3>
-
-<p>Instapost downloads Instagram post information. A shortcode, e.g. <code>BhRpkfqgnsf</code>, acquired from Instacrawler refers to a single post&rsquo;s URL in the form of <code>https://instagram.com/p/BhRpkfqgnsf</code>.</p>
-
-<p>The software component consists of two parts.</p>
+<p><code>instablog.sh</code> Defines basic interface parameters:</p>
 
 <ul>
-<li><code>instapost.sh</code> Defines the file storing relevant Instagram post information as <code>.csv</code> file. Afterwards, it calls the python script to do the work.</li>
-<li><code>instapost.py</code> Downloads post for each shortcode in the shortcode file and extracts relevant information and stores it in a <code>.csv</code> file.</li>
+<li>data directory: storing all intermediate data for the exchange between instablog&rsquo;s other software components.</li>
+<li>profile URL: the Instagram profile URL sourcing the feed data from</li>
+<li>github repo URL: the URL to the github repo providing the jekyll blog</li>
 </ul>
 
-<p><strong>Invoke instapost:</strong> The entry point is always the shell script.</p>
+<p><strong>Default values:</strong> If no params are provided, instablog will fall back to default values; see <a href="https://github.com/cdeck3r/instablog/blob/master/scripts/instablog.sh"><code>instablog.sh</code></a>.</p>
 
-<pre><code class="language-bash">./instapost.sh /tmp
+<p><strong>Invoke instablog:</strong></p>
+
+<pre><code class="language-bash">./instablog.sh /tmp https://www.instagram.com/koloot.design/ https://github.com/dramalamas/dramalamas.github.io
 </code></pre>
 
-<p>Only a data directory, here <code>/tmp</code>, needs to be defined. The script assumes <em>all data files</em> to stay in this data directory. The input shortcode file is assumed to be <code>shortcodes.csv</code>. The output file storing the relevant post information is <code>postinfo.csv</code>.</p>
+<p>Credentials to update the github repo are stored in an external <code>.env</code> file.</p>
 
-<h3 id="blogpost">blogpost</h3>
+<h3 id="recent-posts-limit">&ldquo;Recent Posts&rdquo; Limit</h3>
 
-<p><em>tbd.</em></p>
+<p>The Instagram profile feed is limited to only recent posts, which Instagram defines to be 12 posts.</p>
+
+<h4 id="option-1-rss-feeds"><em>Option 1: RSS feeds</em></h4>
+
+<p>Typical RSS feed solution, e.g. <a href="https://docs.rsshub.app/en/#instagram">RSS Hub</a> or <a href="https://rss.app/rss-feed/create-instagram-rss-feed">RSS.app</a>, have basically the same as the <code>instacrawler</code> component. The source all recent posts from a profile and provide an RSS output format containing posts&rsquo; information. The limit still remains.</p>
+
+<h4 id="option-2-instagram-explore"><em>Option 2: Instagram explore</em></h4>
+
+<p>Explore brings up posts matching a tag. The tag <code>#iceland</code> brings up a page with lots of posts associated with this tag. Just have a look on <a href="https://www.instagram.com/explore/tags/iceland/"><code>https://www.instagram.com/explore/tags/iceland/</code></a>. Interestingly, the page data refers to 76 individual posts. The <code>instacrawler</code> component can successfully process the explore URL, extracts and stores all 70+ shortcodes. It means, however, that all DramaLamas Instagram posts must be specifically tagged to separate the DramaLamas posts from others. Still, we can&rsquo;t avoid free riding. When others would use this tag, their posts would make it into our blog.</p>
+
+<h4 id="option-3-state-based-crawler"><em>Option 3: State-based Crawler</em></h4>
+
+<p>This idea is simple and effective. After each run of the <code>instacrawler</code> component, it simply adds the current posts to the ones from the previous run. Run after run, it builds up history of posts. The frequency of the crawler&rsquo;s runs depends on how often we would post new images on Instagram. The recent post limit is only valid for a single website lookup. If the crawler runs frequently enough, the risk is low it would miss any post.</p>
+
+<p>Option 3 is easy to implement. The <code>instablog</code> main script records the results file, that is the <code>shortcodes.csv</code> file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the <code>instapost</code> script for the next step.</p>
 
         </div>
     </div>

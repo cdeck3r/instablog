@@ -6,10 +6,21 @@
     <description>Recent content in Sections on Instablog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://cdeck3r.com/instablog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>instablog: Main Script</title>
+      <link>http://cdeck3r.com/instablog/post/instablog/</link>
+      <pubDate>Wed, 14 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/instablog/</guid>
+      <description>instablog The main script for automatically creating daily blog posts from Instagram posts. This script may run as a cronjob.
+instablog.sh Defines basic interface parameters:
+ data directory: storing all intermediate data for the exchange between instablog&amp;rsquo;s other software components. profile URL: the Instagram profile URL sourcing the feed data from github repo URL: the URL to the github repo providing the jekyll blog  Default values: If no params are provided, instablog will fall back to default values; see instablog.</description>
+    </item>
     
     <item>
       <title>MVP</title>

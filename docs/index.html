@@ -305,6 +305,32 @@ body {
 <li>Optionally: To enable a simple remote monitoring notifying the regular successful or failed run</li>
 </ul>
 
+<h3 id="alternative-solutions">Alternative Solutions</h3>
+
+<p>Other options of Instagram-Blog-crossposting include</p>
+
+<ul>
+<li><a href="//instafeedjs.com">Instafeed.js</a>
+
+<ul>
+<li>Pro: easy to embedd into a single blog post</li>
+<li>Con: Still requires to manually create a blog post, filtering for a single date  unclear</li>
+</ul></li>
+<li>RSS feeds, e.g. <a href="https://docs.rsshub.app/en/#instagram">RSS Hub</a> or <a href="https://rss.app/rss-feed/create-instagram-rss-feed">RSS.app</a>
+
+<ul>
+<li>Pro: Structured data returned, easy to parse by a wide range of software</li>
+<li>Con: Still requires to manually create a daily blog post</li>
+</ul></li>
+<li>Open Source, e.g. <a href="https://thomasclowes.com/syncing-instagram-posts-to-a-ghost-blog/">Syncing Instagram posts to a Ghost blog</a>
+
+<ul>
+<li>Pro: existing code base, quick start for own projects</li>
+<li>Con: limited to specific blog system, still requires customization effort
+<br /></li>
+</ul></li>
+</ul>
+
                 </div>
             </div>
 
@@ -436,6 +462,27 @@ Updating the blog is a git commit activity.</p>
 
 <p><em>tbd.</em></p>
 
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+	
+    <div class="content-section-b">
+    
+   
+        <div class="container">
+
+            <div class="row">
+                <div>
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">instablog: Main Script</h2>
+                    
+
 <h3 id="instablog">instablog</h3>
 
 <p>The main script for automatically creating daily blog posts from Instagram posts. This script may run as a cronjob.</p>
@@ -457,6 +504,24 @@ Updating the blog is a git commit activity.</p>
 
 <p>Credentials to update the github repo are stored in an external <code>.env</code> file.</p>
 
+<h3 id="recent-posts-limit">&ldquo;Recent Posts&rdquo; Limit</h3>
+
+<p>The Instagram profile feed is limited to only recent posts, which Instagram defines to be 12 posts.</p>
+
+<h4 id="option-1-rss-feeds"><em>Option 1: RSS feeds</em></h4>
+
+<p>Typical RSS feed solution, e.g. <a href="https://docs.rsshub.app/en/#instagram">RSS Hub</a> or <a href="https://rss.app/rss-feed/create-instagram-rss-feed">RSS.app</a>, have basically the same as the <code>instacrawler</code> component. The source all recent posts from a profile and provide an RSS output format containing posts&rsquo; information. The limit still remains.</p>
+
+<h4 id="option-2-instagram-explore"><em>Option 2: Instagram explore</em></h4>
+
+<p>Explore brings up posts matching a tag. The tag <code>#iceland</code> brings up a page with lots of posts associated with this tag. Just have a look on <a href="https://www.instagram.com/explore/tags/iceland/"><code>https://www.instagram.com/explore/tags/iceland/</code></a>. Interestingly, the page data refers to 76 individual posts. The <code>instacrawler</code> component can successfully process the explore URL, extracts and stores all 70+ shortcodes. It means, however, that all DramaLamas Instagram posts must be specifically tagged to separate the DramaLamas posts from others. Still, we can&rsquo;t avoid free riding. When others would use this tag, their posts would make it into our blog.</p>
+
+<h4 id="option-3-state-based-crawler"><em>Option 3: State-based Crawler</em></h4>
+
+<p>This idea is simple and effective. After each run of the <code>instacrawler</code> component, it simply adds the current posts to the ones from the previous run. Run after run, it builds up history of posts. The frequency of the crawler&rsquo;s runs depends on how often we would post new images on Instagram. The recent post limit is only valid for a single website lookup. If the crawler runs frequently enough, the risk is low it would miss any post.</p>
+
+<p>Option 3 is easy to implement. The <code>instablog</code> main script records the results file, that is the <code>shortcodes.csv</code> file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the <code>instapost</code> script for the next step.</p>
+
                 </div>
             </div>
 
@@ -465,8 +530,8 @@ Updating the blog is a git commit activity.</p>
 
     </div>
 
-	
-    <div class="content-section-b">
+	 
+    <div class="content-section-a">
     
    
         <div class="container">

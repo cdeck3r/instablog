@@ -4,17 +4,22 @@
   
   <url>
     <loc>http://cdeck3r.com/instablog/</loc>
-    <lastmod>2019-08-13T00:00:00+00:00</lastmod>
+    <lastmod>2019-08-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cdeck3r.com/instablog/post/mvp/</loc>
-    <lastmod>2019-08-13T00:00:00+00:00</lastmod>
+    <loc>http://cdeck3r.com/instablog/post/</loc>
+    <lastmod>2019-08-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://cdeck3r.com/instablog/post/</loc>
+    <loc>http://cdeck3r.com/instablog/post/instablog/</loc>
+    <lastmod>2019-08-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cdeck3r.com/instablog/post/mvp/</loc>
     <lastmod>2019-08-13T00:00:00+00:00</lastmod>
   </url>
   
