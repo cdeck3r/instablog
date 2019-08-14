@@ -46,24 +46,3 @@ Only a data directory, here `/tmp`, needs to be defined. The script assumes _all
 ### blogpost
 
 _tbd._
-
-
-### instablog
-
-The main script for automatically creating daily blog posts from Instagram posts. This script may run as a cronjob.
-
-`instablog.sh` Defines basic interface parameters:
-
-* data directory: storing all intermediate data for the exchange between instablog's other software components.
-* profile URL: the Instagram profile URL sourcing the feed data from
-* github repo URL: the URL to the github repo providing the jekyll blog
-
-**Default values:** If no params are provided, instablog will fall back to default values; see [`instablog.sh`](https://github.com/cdeck3r/instablog/blob/master/scripts/instablog.sh).
-
-**Invoke instablog:**
-
-``` bash
-./instablog.sh /tmp https://www.instagram.com/koloot.design/ https://github.com/dramalamas/dramalamas.github.io
-```
-
-Credentials to update the github repo are stored in an external `.env` file.

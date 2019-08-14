@@ -23,3 +23,18 @@ New posts on our [Instagram account](//www.instagram.com/dramalamas.tours2019/) 
 * To enable the software to monitor and run the blog post creation on a regular basis, e.g. at a hourly interval
 * To be able to single-click deploy the software on a Virtual Private Server
 * Optionally: To enable a simple remote monitoring notifying the regular successful or failed run
+
+### Alternative Solutions
+
+Other options of Instagram-Blog-crossposting include
+
+* [Instafeed.js](//instafeedjs.com)
+    * Pro: easy to embedd into a single blog post
+    * Con: Still requires to manually create a blog post, filtering for a single date  unclear
+* RSS feeds, e.g. [RSS Hub](https://docs.rsshub.app/en/#instagram) or [RSS.app](https://rss.app/rss-feed/create-instagram-rss-feed)
+    * Pro: Structured data returned, easy to parse by a wide range of software
+    * Con: Still requires to manually create a daily blog post
+* Open Source, e.g. [Syncing Instagram posts to a Ghost blog](https://thomasclowes.com/syncing-instagram-posts-to-a-ghost-blog/)
+    * Pro: existing code base, quick start for own projects
+    * Con: limited to specific blog system, still requires customization effort
+    
