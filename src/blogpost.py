@@ -150,7 +150,7 @@ def pres_regular(post):
 
 
 def pres_leftright(post, lr_idx):
-    entry = """<p><img src=" """"
+    entry = '<p><img src=" '
     entry = entry + post['post_image_url']
 
     if lr_idx % 2:
@@ -177,17 +177,13 @@ def create_post_entries(post_info_df):
     # let's render the presentation
     lr_idx = 0
     for index, post in post_info_df.iterrows():
-        if post['pres_type'] = 'fullscreen':
+        if post['pres_type'] == 'fullscreen':
             post['post_entry'] = pres_fullscreen(post)
-        if post['pres_type'] = 'regular':
+        if post['pres_type'] == 'regular':
             post['post_entry'] = pres_regular(post)
-        if post['pres_type'] = 'leftright':
+        if post['pres_type'] == 'leftright':
             post['post_entry'] = pres_leftright(post, lr_idx)
         lr_idx = lr_idx + 1
-
-    <p><img src="/jekyllDecent/media/img/mountain2.jpg#right" alt="" /></p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan ante nulla, quis pulvinar nibh tempus sed. In congue congue odio, vel ornare mauris ultrices vel. Vestibulum tristique eros at enim vulputate fringilla. Nullam non augue sit amet elit interdum tempus non ut justo.</p>
-<aside>
 
 def download_posts(insta_posts_shortcodes):
 
@@ -269,7 +265,9 @@ def store_posts(post_file, post_info_df):
                 type=click.Path(exists=False, dir_okay=False, writable=True) )
 @click.argument('blog_date',
                 type=click.DateTime(formats=['%Y-%m-%d']) )
-def blogpost(post_file, blog_file, blog_date):
+@click.option('--no-filter', '-f', required=False,
+                type=click.DateTime(formats=['%Y-%m-%d']) )
+def blogpost(post_file, blog_file, blog_date, no_filter):
     """
         post_file Filepath containing all relevant information for each Instagram post
         blog_file Filepath containing the blog post, usually a .md markdown file
