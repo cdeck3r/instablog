@@ -106,7 +106,7 @@ def store_posts(post_file, post_info_df):
         post_info_df.to_csv(post_file, sep=';', encoding='utf-8', index=False)
     except:
         # log error handling
-        logger.error('Error writing file : %s', pos_file)
+        logger.error('Error writing file : %s', post_file)
         sys.exit(1)
 
 
