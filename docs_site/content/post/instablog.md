@@ -41,17 +41,17 @@ You need to specify at least the blog's github URL. Credentials to update the gi
 
 ### Feed History and the "Recent Posts" Limit
 
-The Instagram profile feed is limited to only recent posts, which Instagram defines to be 12 posts.
+The Instagram profile feed is limited to recent posts  only, which Instagram defines to be 12 posts. We discuss three options to overcome this limit.
 
-#### *Option 1: RSS feeds*
+##### **Option 1: RSS feeds**
 
 Typical RSS feed solution, e.g. [RSS Hub](https://docs.rsshub.app/en/#instagram) or [RSS.app](https://rss.app/rss-feed/create-instagram-rss-feed), have basically the same as the `instacrawler` component. The source all recent posts from a profile and provide an RSS output format containing posts' information. The limit still remains.
 
-#### *Option 2: Instagram explore*
+##### **Option 2: Instagram explore**
 
-Explore brings up posts matching a tag. The tag `#iceland` brings up a page with lots of posts associated with this tag. Just have a look on [`https://www.instagram.com/explore/tags/iceland/`](https://www.instagram.com/explore/tags/iceland/). Interestingly, the page data refers to 76 individual posts. The `instacrawler` component can successfully process the explore URL, extracts and stores all 70+ shortcodes. It means, however, that all DramaLamas Instagram posts must be specifically tagged to separate the DramaLamas posts from others. Still, we can't avoid free riding. When others would use this tag, their posts would make it into our blog.
+Explore brings up posts matching a tag. The tag `#iceland` brings up a page with lots of posts associated with this tag. Just have a look on [`https://www.instagram.com/explore/tags/iceland/`](https://www.instagram.com/explore/tags/iceland/). Interestingly, the page data refers to 76 individual posts. The `instacrawler` component can successfully process the explore URL, extracts and stores all 70+ shortcodes. It means, however, that all user specific Instagram posts must be specifically tagged to separate them posts from others. Still, we can't avoid free riding. When others would use this tag, their posts would make it into our blog.
 
-#### *Option 3: State-based Crawler*
+##### **Option 3: State-based Crawler**
 
 This idea is simple and effective. After each run of the `instacrawler` component, it simply adds the current posts to the ones from the previous run. Run after run, it builds up history of posts. The frequency of the crawler's runs depends on how often we would post new images on Instagram. The recent post limit is only valid for a single website lookup. If the crawler runs frequently enough, the risk is low it would miss any post.
 
