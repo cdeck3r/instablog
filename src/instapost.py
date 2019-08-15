@@ -16,33 +16,6 @@ import os
 import pandas as pd
 
 
-#
-# Source: https://gist.github.com/douglasmiranda/5127251#gistcomment-2398949
-#
-def find_json(key, dictionary):
-    """Returns the value for a key in in a (nested) iterable.
-
-       Arguments:
-           - key: a dictionary's entry
-           - dictionary: <list> or <dictionary>
-           - returned: <string> "value"
-
-       Returns:
-           - <iterator>
-    """
-    for k, v in dictionary.items():
-        if k == key:
-            yield v
-        elif isinstance(v, dict):
-            for result in find_json(key, v):
-                yield result
-        elif isinstance(v, list):
-            for d in v:
-                if isinstance(d, dict):
-                    for result in find_json(key, d):
-                        yield result
-
-
 def load_shortcodes(code_file):
     logger = logging.getLogger(__file__)
     logger.info('Load shortcodes from file: %s', code_file)
