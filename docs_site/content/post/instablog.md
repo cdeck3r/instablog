@@ -27,17 +27,17 @@ Usage: ./instablog.sh <options>
 Options:
 
 -h | --help              This message
--g | --github            Github blog URL
 [-r | --dataroot]        directory to exchange data betw. components
 [-p | --profile]         Instagram profile URL
+[-g | --github]          Github blog URL
 [-d | --postdate]        blog post date, format: yyyy-mm-dd
 
 Default DATAROOT: /tmp
 Default PROFILE_URL: https://www.instagram.com/koloot.design/
-Default POST_DATE: 2019-08-14
+Default POST_DATE: 2019-08-15
 
 ```
-You need to specify at least the blog's github URL. Credentials to update the github repo are stored in an external `.env` file.
+There is no default value for the github blog URL. If you leave this option out, it  will not update the remote blog. Credentials to update the github repo are stored in an external `.env` file.
 
 ### Feed History and the "Recent Posts" Limit
 

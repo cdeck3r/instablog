@@ -22,7 +22,8 @@ DATAROOT="/tmp" # default value
 # Instagram profile URL
 PROFILE_URL="https://www.instagram.com/koloot.design/" # default value
 # Github blog URL
-GITHUB_URL="https://github.com/dramalamas/dramalamas.github.io"
+GITHUB_URL=  # no default value
+#GITHUB_URL="https://github.com/dramalamas/dramalamas.github.io"
 # Blog post date
 POST_DATE=$(date '+%Y-%m-%d') # today's date, format: yyyy-mm-dd
 
@@ -47,9 +48,9 @@ usage()
     echo -e "Options:"
     echo
     echo -e "-h | --help\t\t This message"
-    echo -e "-g | --github\t\t Github blog URL"
     echo -e "[-r | --dataroot]\t directory to exchange data betw. components"
     echo -e "[-p | --profile]\t Instagram profile URL"
+    echo -e "[-g | --github]\t\t Github blog URL"
     echo -e "[-d | --postdate]\t blog post date, format: yyyy-mm-dd"
     echo ""
 	echo -e "Default DATAROOT: ${DATAROOT}"
@@ -77,7 +78,7 @@ while :; do
             OPT_CNT=$((OPT_CNT + 1))
             ;;
         -g|--github)
-            #GITHUB_URL=$2
+            GITHUB_URL=$2
             OPT_CNT=$((OPT_CNT + 1))
             ;;
         -d|--postdate)
@@ -88,12 +89,8 @@ while :; do
             printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
             ;;
         *)  # Default case: no more options; test required param and break out
-			if [ "$OPT_CNT" -ge 1 ]
+			if [ "$OPT_CNT" -ge 0 ]
 			then
-                if [ -z $GITHUB_URL ]; then
-                    echo -e "ERROR: Please specify at least the github blog URL"
-                    exit 1
-                fi
                 break
 			else
 				echo -e "ERROR: Too few options provided."
@@ -113,6 +110,11 @@ log_echo "INFO" "PROFILE_URL: ${PROFILE_URL}"
 log_echo "INFO" "GITHUB_URL: ${GITHUB_URL}"
 log_echo "INFO" "POST_DATE: ${POST_DATE}"
 
+# Note about the remote update
+if [ -z $GITHUB_URL ]; then
+    log_echo "WARN" "No GITHUB_URL specified. Will not update remote blog."
+fi
+
 # let's start
 log_echo "INFO" "instablog starts"
 
@@ -126,5 +128,7 @@ mkdir -p "$DATAROOT"
 
 "$INSTACRAWLER" "$DATAROOT" "$PROFILE_URL"
 "$INSTAPOST" "$DATAROOT"
+# TODO: "$BLOGPOST" 
+
 
 log_echo "INFO" "Instablog done"
