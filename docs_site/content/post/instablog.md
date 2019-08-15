@@ -39,6 +39,9 @@ Default POST_DATE: 2019-08-15
 ```
 There is no default value for the github blog URL. If you leave this option out, it  will not update the remote blog. Credentials to update the github repo are stored in an external `.env` file.
 
+The following activity diagram displays the workflow of all `instablog` components.
+<img src="uml/instablog.png" alt="instablog activity diagram" width="100%"/>
+
 ### Feed History and the "Recent Posts" Limit
 
 The Instagram profile feed is limited to recent posts  only, which Instagram defines to be 12 posts. We discuss three options to overcome this limit.

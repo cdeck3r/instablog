@@ -1,0 +1,46 @@
+@startumlsc_modern
+skinparam monochrome true
+skinparam componentStyle uml2
+
+|instablog|
+start
+:Define parameters;
+
+|instacrawler|
+:Collect posts' shortcodes
+ from Instagram profile feed;
+:Store in file;
+
+|File System|
+:shortcodes.csv]
+
+|instapost|
+:Load shortcodes.csv;
+partition "foreach code in shortcodes.csv" {
+    :Download post website
+    from Instagram;
+    :Extract relevant information;
+}
+:Store post information;
+
+|#AntiqueWhite|File System|
+:postinfo.csv]
+
+|blogpost|
+:Load blog post template;
+:Load postinfo.csv;
+partition "foreach entry in postinfo.csv" {
+    :Create post entry
+    in blog post;
+}
+:Store in blog post file;
+
+|File System|
+:YYYY-MM-DD-Title.md]
+
+|blogpost|
+:Commit blog post file;
+:Push to github;
+stop
+
+@enduml

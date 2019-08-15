@@ -6,7 +6,7 @@ interface "GitHub" as git
 interface "HTTP" as http
 interface "File System" as fs
 
-http - [instacrawler] 
+http - [instacrawler]
 [instacrawler] ..> fs : use
 
 fs <.. [instapost] 

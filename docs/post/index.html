@@ -477,32 +477,35 @@ Usage: ./instablog.sh &lt;options&gt;
 Options:
 
 -h | --help              This message
--g | --github            Github blog URL
 [-r | --dataroot]        directory to exchange data betw. components
 [-p | --profile]         Instagram profile URL
+[-g | --github]          Github blog URL
 [-d | --postdate]        blog post date, format: yyyy-mm-dd
 
 Default DATAROOT: /tmp
 Default PROFILE_URL: https://www.instagram.com/koloot.design/
-Default POST_DATE: 2019-08-14
+Default POST_DATE: 2019-08-15
 
 </code></pre>
 
-<p>You need to specify at least the blog&rsquo;s github URL. Credentials to update the github repo are stored in an external <code>.env</code> file.</p>
+<p>There is no default value for the github blog URL. If you leave this option out, it  will not update the remote blog. Credentials to update the github repo are stored in an external <code>.env</code> file.</p>
+
+<p>The following activity diagram displays the workflow of all <code>instablog</code> components.
+<img src="uml/instablog.png" alt="instablog activity diagram" width="100%"/></p>
 
 <h3 id="feed-history-and-the-recent-posts-limit">Feed History and the &ldquo;Recent Posts&rdquo; Limit</h3>
 
-<p>The Instagram profile feed is limited to only recent posts, which Instagram defines to be 12 posts.</p>
+<p>The Instagram profile feed is limited to recent posts  only, which Instagram defines to be 12 posts. We discuss three options to overcome this limit.</p>
 
-<h4 id="option-1-rss-feeds"><em>Option 1: RSS feeds</em></h4>
+<h5 id="option-1-rss-feeds"><strong>Option 1: RSS feeds</strong></h5>
 
 <p>Typical RSS feed solution, e.g. <a href="https://docs.rsshub.app/en/#instagram">RSS Hub</a> or <a href="https://rss.app/rss-feed/create-instagram-rss-feed">RSS.app</a>, have basically the same as the <code>instacrawler</code> component. The source all recent posts from a profile and provide an RSS output format containing posts&rsquo; information. The limit still remains.</p>
 
-<h4 id="option-2-instagram-explore"><em>Option 2: Instagram explore</em></h4>
+<h5 id="option-2-instagram-explore"><strong>Option 2: Instagram explore</strong></h5>
 
-<p>Explore brings up posts matching a tag. The tag <code>#iceland</code> brings up a page with lots of posts associated with this tag. Just have a look on <a href="https://www.instagram.com/explore/tags/iceland/"><code>https://www.instagram.com/explore/tags/iceland/</code></a>. Interestingly, the page data refers to 76 individual posts. The <code>instacrawler</code> component can successfully process the explore URL, extracts and stores all 70+ shortcodes. It means, however, that all DramaLamas Instagram posts must be specifically tagged to separate the DramaLamas posts from others. Still, we can&rsquo;t avoid free riding. When others would use this tag, their posts would make it into our blog.</p>
+<p>Explore brings up posts matching a tag. The tag <code>#iceland</code> brings up a page with lots of posts associated with this tag. Just have a look on <a href="https://www.instagram.com/explore/tags/iceland/"><code>https://www.instagram.com/explore/tags/iceland/</code></a>. Interestingly, the page data refers to 76 individual posts. The <code>instacrawler</code> component can successfully process the explore URL, extracts and stores all 70+ shortcodes. It means, however, that all user specific Instagram posts must be specifically tagged to separate them posts from others. Still, we can&rsquo;t avoid free riding. When others would use this tag, their posts would make it into our blog.</p>
 
-<h4 id="option-3-state-based-crawler"><em>Option 3: State-based Crawler</em></h4>
+<h5 id="option-3-state-based-crawler"><strong>Option 3: State-based Crawler</strong></h5>
 
 <p>This idea is simple and effective. After each run of the <code>instacrawler</code> component, it simply adds the current posts to the ones from the previous run. Run after run, it builds up history of posts. The frequency of the crawler&rsquo;s runs depends on how often we would post new images on Instagram. The recent post limit is only valid for a single website lookup. If the crawler runs frequently enough, the risk is low it would miss any post.</p>
 
