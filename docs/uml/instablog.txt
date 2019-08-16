@@ -27,12 +27,12 @@ partition "foreach code in shortcodes.csv" {
 :postinfo.csv]
 
 |blogpost|
-:Load blog post template;
 :Load postinfo.csv;
 partition "foreach entry in postinfo.csv" {
     :Create post entry
     in blog post;
 }
+:Create frontmatter;
 :Store in blog post file;
 
 |File System|
