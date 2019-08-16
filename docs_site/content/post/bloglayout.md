@@ -58,4 +58,4 @@ If the number of selected entries exceeds the `post_count_threshold`, we speak a
 
 **leftright.** Otherwise, if there is long image caption, i.e. if an entry's caption is greater than `caption_huge_threshold`, the image will be aligned alternatingly as left or right image. A separate paragraph will hold the the caption.
 
-**album.** If we find many regular aligned images, i.e. more than `album_threshold`, we realign regular images as album images. Each album image includes an image caption. The size of the album is controlled by `album_img_count` parameter. The album consists of `album_img_count - 1` images and next images is aligned as a regular one again.
+**album.** If we find many regular aligned images, i.e. more than `album_threshold`, we realign regular images as album images. Remember that regular aligned images always correspond with captions as their description. An album will not change it. Each album image includes an image caption. The size of the album is controlled by `album_img_count` parameter. The album consists of `album_img_count` images and the next images is a regular aligned one again. 
