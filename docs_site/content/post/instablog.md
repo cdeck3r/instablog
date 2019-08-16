@@ -2,7 +2,7 @@
 title = "instablog: Main Script"
 date = 2019-08-14
 description = "Details of the instablog main script"
-sec = 6
+sec = 7
 +++
 
 
