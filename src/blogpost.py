@@ -329,6 +329,8 @@ def create_post_frontmatter(post_info_df, blog_date):
     post_frontmatter += lb
     post_frontmatter += 'author: instablog'
     post_frontmatter += lb
+    post_frontmatter += 'tags: tour'
+    post_frontmatter += lb
     post_frontmatter += 'published: true'
     post_frontmatter += lb
     post_frontmatter += 'comments: false'
