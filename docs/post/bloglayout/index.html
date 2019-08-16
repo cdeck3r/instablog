@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="
+		Layout options when creating a blogpost 
+		"> 
+    
+	<meta name="author" content=" cdeck3r ">  
+    <base href="http://cdeck3r.com/instablog/">
+    <title>blogpost: Layout</title>
+
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+
+    
+    
+    
+
+    <style>
+    .navbar {
+    border-color: #e7e7e7;
+}
+
+.content-section-a,
+footer,
+.navbar {
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.navbar a:link,
+.navbar-default .navbar-nav>li>a {
+  color: #777;
+}
+
+.navbar a:hover,
+.navbar-default .navbar-nav>li>a:hover {
+  color: rgb(51, 51, 51);
+}
+
+.content-section-b {
+  background-color: white;
+  color: #333;
+}
+
+body {
+  color: rgb(51, 51, 51);
+}
+
+.header-container h1,
+.header-container h2,
+.header-container h3,
+.header-container h4 {
+  color: rgb(51, 51, 51);
+}
+
+  </style>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        
+        <div class="navbar-header page-scroll" style="margin-left: -15px;">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+            </button>
+            <a class="page-scroll navbar-brand" href="#intro">Instablog</a>
+        </div>
+        
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+				
+				<li>
+				  <a class="page-scroll" href=//github.com/cdeck3r/instablog>
+                    Github
+                  </a>
+                </li>
+				
+				
+				<li>
+					<a class="page-scroll" href=//cdeck3r.com>
+                    cdeck3r
+					</a>
+                </li>
+				
+            </ul>
+        </div>
+        
+    </div>
+    
+</nav>
+
+
+<section id="services">
+   <div class="content-section-a">
+
+      <div class="container">
+
+        <div class="row">
+          <div>
+            <hr class="section-heading-spacer">
+            <div class="clearfix"></div>
+            <h2 class="section-heading">blogpost: Layout</h2>
+            
+
+<p>The <code>blogpost</code> component, to be specific the <code>blogpost.py</code> script, determines the the blogpost&rsquo;s layout. This includes frontmatter information, such as title and cover image as well as post content like image alignment and captions.</p>
+
+<h3 id="title">Title</h3>
+
+<p>The <code>blogpost</code> component enumerates blog posts by the day in relation to a reference date. In our case, the reference date is the tour start. As a result, titles refer to the tour day.</p>
+
+<h3 id="cover-image">Cover Image</h3>
+
+<p>This is also part of the post&rsquo;s frontmatter. From all Instagram images selected for this post the script chooses one by random to declare it as the cover image.</p>
+
+<h3 id="image-alignment-and-captions">Image Alignment and Captions</h3>
+
+<p>The dramalamas.tours blog theme aligns images in the following ways.</p>
+
+<ul>
+<li>fullscreen: images takes the complete browser window width</li>
+<li>regular: images takes the text block width</li>
+<li>left or right: stamped-size left and right alignment</li>
+<li>album: images aligned in a banner to be scrolling left/right</li>
+</ul>
+
+<p>The <a href="https://jwillmer.github.io/jekyllDecent/blog/features/Features">theme&rsquo;s example site</a> provides a nice overview. All images can be zoomed in to browser size or even on the entire screen size by clicking on it.</p>
+
+<p>The <code>blogpost.py</code> script implements a couple of heuristics to align images according the options listed above. The selection mainly depends on</p>
+
+<ul>
+<li>the number of images selected for this blogpost</li>
+<li>the length of the images&rsquo; captions</li>
+</ul>
+
+<p>The following thresholds define the behavior.</p>
+
+<pre><code>post_count_threshold = 2
+caption_len_threshold = 25
+caption_huge_threshold = 200
+album_threshold = 8
+album_img_count = 4
+</code></pre>
+
+<h4 id="blog-post-with-few-images"><strong>Blog Post with Few Images</strong></h4>
+
+<p>If the number of selected entries is less or equal than <code>post_count_threshold</code>, we speak about a blog post with only a few images.</p>
+
+<p><strong>fullscreen.</strong> A single image is always aligned as a fullscreen image.</p>
+
+<p><strong>regular.</strong> If there are less or equal than <code>post_count_threshold</code> images, they are aligned as regular images.</p>
+
+<p><strong>caption or paragraph.</strong> If an entry&rsquo;s caption is less or equal <code>caption_len_threshold</code>, an image is described by a caption. Otherwise, a separate paragraph below the image will include the caption.</p>
+
+<h4 id="blog-post-with-many-images"><strong>Blog Post with Many Images</strong></h4>
+
+<p>If the number of selected entries exceeds the <code>post_count_threshold</code>, we speak about a blog post with many images.</p>
+
+<p><strong>regular.</strong> For short image captions, i.e. if an entry&rsquo;s caption is less or equal than <code>caption_huge_threshold</code>, the image will be aligned as regular with a caption.</p>
+
+<p><strong>leftright.</strong> Otherwise, if there is long image caption, i.e. if an entry&rsquo;s caption is greater than <code>caption_huge_threshold</code>, the image will be aligned alternatingly as left or right image. A separate paragraph will hold the the caption.</p>
+
+<p><strong>album.</strong> If we find many regular aligned images, i.e. more than <code>album_threshold</code>, we realign regular images as album images. Remember that regular aligned images always correspond with captions as their description. An album will not change it. Each album image includes an image caption. The size of the album is controlled by <code>album_img_count</code> parameter. The album consists of <code>album_img_count</code> images and the next images is a regular aligned one again.</p>
+
+        </div>
+    </div>
+
+</div>
+</div>
+
+</section>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8" style="padding-left: 0px">
+				<ul class="list-inline">
+					<li>
+						<a class="page-scroll" href="#intro">Up</a>
+					</li>
+					<li class="footer-menu-divider">&sdot;</li>
+						<li>
+							<a href="http://cdeck3r.com/instablog/imprint-gdpr/imprint" >Imprint</a>
+						</li>
+					<li class="footer-menu-divider">&sdot;</li>
+						<li>
+							<a href="http://cdeck3r.com/instablog/imprint-gdpr/gdpr" >GDPR</a>
+						</li>
+				 </ul>
+				 <p class="copyright text-muted small">Copyright &copy; Instablog All Rights Reserved</p>
+			</div>
+            <div class="col-md-4" style="padding-right: 0px">
+				Built with <a href="http://gohugo.io">Hugo</a> and the
+				<a href="https://github.com/cdeck3r/OneDly-Theme">OneDly project</a>
+				theme.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/jquery-1.11.0.js"></script>
+
+
+<script src="/js/jquery.easing.min.js"></script>
+
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>
+

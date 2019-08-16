@@ -163,7 +163,21 @@ body {
 
 <h3 id="blogpost">blogpost</h3>
 
-<p><em>tbd.</em></p>
+<p>Blogpost creates a blog post from the Instagram posts information. This component is <em>specific for the blog</em> where the post appears. The <a href="https://github.com/cdeck3r/instablog/blob/master/src/blogpost.py">component&rsquo;s code</a> is specific for the <a href="//dramalamas.tours">dramalamas.tours blog</a> and its <a href="https://github.com/jwillmer/jekyllDecent">jekyllDecent theme</a>.</p>
+
+<p>The software component consists of two parts.</p>
+
+<ul>
+<li><code>blogpost.sh</code> Defines the Instagram post information source file as well as the filepath to the blogpost file. Addtionally, it requires the blog date. Afterwards, it calls the python script to do the work.</li>
+<li><code>blogpost.py</code> Filters the post information file for the blog date and creates the blogpost file formatted to be compliant with the <a href="https://github.com/jwillmer/jekyllDecent">jekyllDecent theme</a>.</li>
+</ul>
+
+<p><strong>Invoke blogpost:</strong> The entry point is always the shell script.</p>
+
+<pre><code class="language-bash">./blogpost.sh /tmp 2019-08-16
+</code></pre>
+
+<p>The <code>/tmp</code> directory serves a dataroot. Filenames are set by convention through the script. The blog date must be in format YYYY-MM-DD. A successful script run will generate <code>2019-08-16-instablog.md</code> file the <code>/tmp</code> directory when called with the parameters from above.</p>
 
         </div>
     </div>

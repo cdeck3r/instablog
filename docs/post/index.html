@@ -432,7 +432,21 @@ Updating the blog is a git commit activity.</p>
 
 <h3 id="blogpost">blogpost</h3>
 
-<p><em>tbd.</em></p>
+<p>Blogpost creates a blog post from the Instagram posts information. This component is <em>specific for the blog</em> where the post appears. The <a href="https://github.com/cdeck3r/instablog/blob/master/src/blogpost.py">component&rsquo;s code</a> is specific for the <a href="//dramalamas.tours">dramalamas.tours blog</a> and its <a href="https://github.com/jwillmer/jekyllDecent">jekyllDecent theme</a>.</p>
+
+<p>The software component consists of two parts.</p>
+
+<ul>
+<li><code>blogpost.sh</code> Defines the Instagram post information source file as well as the filepath to the blogpost file. Addtionally, it requires the blog date. Afterwards, it calls the python script to do the work.</li>
+<li><code>blogpost.py</code> Filters the post information file for the blog date and creates the blogpost file formatted to be compliant with the <a href="https://github.com/jwillmer/jekyllDecent">jekyllDecent theme</a>.</li>
+</ul>
+
+<p><strong>Invoke blogpost:</strong> The entry point is always the shell script.</p>
+
+<pre><code class="language-bash">./blogpost.sh /tmp 2019-08-16
+</code></pre>
+
+<p>The <code>/tmp</code> directory serves a dataroot. Filenames are set by convention through the script. The blog date must be in format YYYY-MM-DD. A successful script run will generate <code>2019-08-16-instablog.md</code> file the <code>/tmp</code> directory when called with the parameters from above.</p>
 
                 </div>
             </div>
@@ -444,6 +458,86 @@ Updating the blog is a git commit activity.</p>
 
 	
     <div class="content-section-b">
+    
+   
+        <div class="container">
+
+            <div class="row">
+                <div>
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">blogpost: Layout</h2>
+                    
+
+<p>The <code>blogpost</code> component, to be specific the <code>blogpost.py</code> script, determines the the blogpost&rsquo;s layout. This includes frontmatter information, such as title and cover image as well as post content like image alignment and captions.</p>
+
+<h3 id="title">Title</h3>
+
+<p>The <code>blogpost</code> component enumerates blog posts by the day in relation to a reference date. In our case, the reference date is the tour start. As a result, titles refer to the tour day.</p>
+
+<h3 id="cover-image">Cover Image</h3>
+
+<p>This is also part of the post&rsquo;s frontmatter. From all Instagram images selected for this post the script chooses one by random to declare it as the cover image.</p>
+
+<h3 id="image-alignment-and-captions">Image Alignment and Captions</h3>
+
+<p>The dramalamas.tours blog theme aligns images in the following ways.</p>
+
+<ul>
+<li>fullscreen: images takes the complete browser window width</li>
+<li>regular: images takes the text block width</li>
+<li>left or right: stamped-size left and right alignment</li>
+<li>album: images aligned in a banner to be scrolling left/right</li>
+</ul>
+
+<p>The <a href="https://jwillmer.github.io/jekyllDecent/blog/features/Features">theme&rsquo;s example site</a> provides a nice overview. All images can be zoomed in to browser size or even on the entire screen size by clicking on it.</p>
+
+<p>The <code>blogpost.py</code> script implements a couple of heuristics to align images according the options listed above. The selection mainly depends on</p>
+
+<ul>
+<li>the number of images selected for this blogpost</li>
+<li>the length of the images&rsquo; captions</li>
+</ul>
+
+<p>The following thresholds define the behavior.</p>
+
+<pre><code>post_count_threshold = 2
+caption_len_threshold = 25
+caption_huge_threshold = 200
+album_threshold = 8
+album_img_count = 4
+</code></pre>
+
+<h4 id="blog-post-with-few-images"><strong>Blog Post with Few Images</strong></h4>
+
+<p>If the number of selected entries is less or equal than <code>post_count_threshold</code>, we speak about a blog post with only a few images.</p>
+
+<p><strong>fullscreen.</strong> A single image is always aligned as a fullscreen image.</p>
+
+<p><strong>regular.</strong> If there are less or equal than <code>post_count_threshold</code> images, they are aligned as regular images.</p>
+
+<p><strong>caption or paragraph.</strong> If an entry&rsquo;s caption is less or equal <code>caption_len_threshold</code>, an image is described by a caption. Otherwise, a separate paragraph below the image will include the caption.</p>
+
+<h4 id="blog-post-with-many-images"><strong>Blog Post with Many Images</strong></h4>
+
+<p>If the number of selected entries exceeds the <code>post_count_threshold</code>, we speak about a blog post with many images.</p>
+
+<p><strong>regular.</strong> For short image captions, i.e. if an entry&rsquo;s caption is less or equal than <code>caption_huge_threshold</code>, the image will be aligned as regular with a caption.</p>
+
+<p><strong>leftright.</strong> Otherwise, if there is long image caption, i.e. if an entry&rsquo;s caption is greater than <code>caption_huge_threshold</code>, the image will be aligned alternatingly as left or right image. A separate paragraph will hold the the caption.</p>
+
+<p><strong>album.</strong> If we find many regular aligned images, i.e. more than <code>album_threshold</code>, we realign regular images as album images. Remember that regular aligned images always correspond with captions as their description. An album will not change it. Each album image includes an image caption. The size of the album is controlled by <code>album_img_count</code> parameter. The album consists of <code>album_img_count</code> images and the next images is a regular aligned one again.</p>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+	 
+    <div class="content-section-a">
     
    
         <div class="container">
@@ -521,8 +615,8 @@ Default POST_DATE: 2019-08-15
 
     </div>
 
-	 
-    <div class="content-section-a">
+	
+    <div class="content-section-b">
     
    
         <div class="container">

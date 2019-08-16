@@ -6,10 +6,20 @@
     <description>Recent content in Sections on Instablog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 16 Aug 2019 00:20:13 +0000</lastBuildDate>
     
 	<atom:link href="http://cdeck3r.com/instablog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>blogpost: Layout</title>
+      <link>http://cdeck3r.com/instablog/post/bloglayout/</link>
+      <pubDate>Fri, 16 Aug 2019 00:20:13 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/bloglayout/</guid>
+      <description>The blogpost component, to be specific the blogpost.py script, determines the the blogpost&amp;rsquo;s layout. This includes frontmatter information, such as title and cover image as well as post content like image alignment and captions.
+Title The blogpost component enumerates blog posts by the day in relation to a reference date. In our case, the reference date is the tour start. As a result, titles refer to the tour day.</description>
+    </item>
     
     <item>
       <title>instablog: Main Script</title>
