@@ -119,14 +119,15 @@ def classify_posts(post_info_df,
     if numOfRows > album_threshold:
         # we define albums
         img_idx = 0
+        pres_type_rollover = album_img_count + 1
         for index, post in post_info_df.iterrows():
-            if (post['pres_type'] == 'regular') and (img_idx % album_img_count == 0):
+            if (post['pres_type'] == 'regular') and (img_idx % pres_type_rollover == 0):
                 # we leave it as it is
                 img_idx = img_idx + 1
                 logger.debug('Remain classification [regular] for post: %s', post['shortcode'])
                 continue
 
-            if (post['pres_type'] == 'regular') and (img_idx % album_img_count > 0):
+            if (post['pres_type'] == 'regular') and (img_idx % pres_type_rollover > 0):
                 post_info_df.loc[index, 'pres_type'] = 'album'
                 img_idx = img_idx + 1
                 logger.debug('Classify [album / caption] for post: %s', post['shortcode'])
@@ -240,13 +241,16 @@ def create_post_entries(post_info_df, album_img_count=4):
 
         if post['pres_type'] == 'album':
             logger.debug('Render [album] for post: %s', post['shortcode'])
-            if len(post_album_idx) < (album_img_count-2):
+            if len(post_album_idx) < (album_img_count-1):
                 # accumulate image for album
                 post_album_idx.append(index)
+                # last known album index
+                # we will not fill post_entry at this index
+                # post_entry will stay empty
+                last_empty_album_index = index
             else:
                 #add this last image to album
                 post_album_idx.append(index)
-
                 logger.debug('Album images to render: %d', len(post_album_idx))
                 # render album
                 post_info_df.loc[index, 'post_entry'] = pres_album(post_info_df, post_album_idx)
@@ -257,6 +261,18 @@ def create_post_entries(post_info_df, album_img_count=4):
             logger.debug('Render [leftright] for post: %s', post['shortcode'])
             post_info_df.loc[index, 'post_entry'] = pres_leftright(post, lr_idx)
             lr_idx = lr_idx + 1
+
+    # special case, leftover album image
+    if len(post_album_idx) > 0:
+        # album images left, but not rendered
+        logger.debug('Leftover album images to render: %d', len(post_album_idx))
+        # render album
+        # last_album_index is the last known album index
+        # we know that at last_empty_album_index the post_entry is empty
+        post_info_df.loc[last_empty_album_index, 'post_entry'] = pres_album(post_info_df, post_album_idx)
+        # reset album image accumulator
+        post_album_idx = []
+
 
     return post_info_df
 
