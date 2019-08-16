@@ -36,7 +36,7 @@ partition "foreach entry in postinfo.csv" {
 :Store in blog post file;
 
 |File System|
-:YYYY-MM-DD-Title.md]
+:YYYY-MM-DD-instablog.md]
 
 |blogpost|
 :Commit blog post file;
