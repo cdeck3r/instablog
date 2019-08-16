@@ -16,7 +16,7 @@ import os
 import pandas as pd
 
 
-def load_post_info(post_file, blog_date):
+def load_post_info(post_file, blog_date, no_filter):
     logger = logging.getLogger(__file__)
     logger.info('Load post info from file: %s', post_file)
 
@@ -34,8 +34,11 @@ def load_post_info(post_file, blog_date):
     post_info_df['uploadDate'] = pd.to_datetime(post_info_df['uploadDate'])
     post_info_df['post_date'] = [d.date() for d in post_info_df['uploadDate']]
     # now filter
-    logger.info('Filter for post date: %s', blog_date)
-    post_info_df_filtered = post_info_df[ (post_info_df['post_date'] == blog_date) ]
+    if no_filter:
+        post_info_df_filtered = post_info_df
+    else:
+        logger.info('Filter for post date: %s', blog_date)
+        post_info_df_filtered = post_info_df[ (post_info_df['post_date'] == blog_date) ]
 
     if len(post_info_df_filtered) < 1:
         logger.warning('No post info found. Maybe filtered out?')
@@ -114,37 +117,37 @@ def classify_posts(post_info_df):
 
 
 def pres_fullscreen(post):
-    entry = """<figure class="large" markdown="1">"""
-    entry = entry + """<p><img src=" """
+    entry = '<figure class="large" markdown="1">'
+    entry = entry + '<p><img src=" '
     entry = entry + post[post_image_url]
-    entry = entry + """ alt="" /></p> """
+    entry = entry + ' alt="" /></p> '
 
     if post['desc_type'] == 'caption':
-        entry = entry + "<figcaption>"
+        entry = entry + '<figcaption>'
         entry = entry + post['caption']
-        entry = entry + "</figcaption>"
-    entry = entry + "</figure>"
+        entry = entry + '</figcaption>'
+    entry = entry + '</figure>'
 
     if post['desc_type'] == 'paragraph':
-        entry = entry + "<p>" + post['caption'] + "</p>"
+        entry = entry + '<p>' + post['caption'] + '</p>'
 
     return entry
 
 
 def pres_regular(post):
-    entry = "<figure>"
-    entry = entry + """ <img src=" """
+    entry = '<figure>'
+    entry = entry + ' <img src=" '
     entry = entry + post['post_image_url']
-    entry = entry + """ " /> """
+    entry = entry + ' " /> '
 
     if post['desc_type'] == 'caption':
-        entry = entry + "<figcaption>"
+        entry = entry + '<figcaption>'
         entry = entry + post['caption']
-        entry = entry + "</figcaption>"
-    entry = entry + "</figure>"
+        entry = entry + '</figcaption>'
+    entry = entry + '</figure>'
 
     if post['desc_type'] == 'paragraph':
-        entry = entry + "<p>" + post['caption'] + "</p>"
+        entry = entry + '<p>' + post['caption'] + '</p>'
 
     return entry
 
@@ -154,13 +157,13 @@ def pres_leftright(post, lr_idx):
     entry = entry + post['post_image_url']
 
     if lr_idx % 2:
-        entry = entry + """#right" alt="" />"""
+        entry = entry + '#right" alt="" />'
     else:
-        entry = entry + """#left" alt="" />"""
+        entry = entry + '#left" alt="" />'
     pass
-    entry = entry + "</p>"
+    entry = entry + '</p>'
     if post['desc_type'] == 'paragraph':
-        entry = entry + "<p>" + post['caption'] + "</p>"
+        entry = entry + '<p>' + post['caption'] + '</p>'
 
     return entry
 
@@ -265,19 +268,24 @@ def store_posts(post_file, post_info_df):
                 type=click.Path(exists=False, dir_okay=False, writable=True) )
 @click.argument('blog_date',
                 type=click.DateTime(formats=['%Y-%m-%d']) )
-@click.option('--no-filter', '-f', required=False,
-                type=click.DateTime(formats=['%Y-%m-%d']) )
+@click.option('--no-filter', '-f', required=False, is_flag=True,
+                help='Do not filter <post_file> entries by <blog_date>.')
 def blogpost(post_file, blog_file, blog_date, no_filter):
-    """
-        post_file Filepath containing all relevant information for each Instagram post
-        blog_file Filepath containing the blog post, usually a .md markdown file
-        blog_date Date of blog entry, format: YYYY-MM-DD
+    """Creates a blog post file
+
+        \b
+        <post_file> Filepath containing all relevant information for each Instagram post.
+        <blog_file> Filepath containing the blog post, usually a .md markdown file.
+        <blog_date> Blog entry date [YYYY-MM-DD]; only <post_file> entries matching the date will be included.
+
+        You may disable the date filtering using -f switch.
+        The blog post file will then contain all <post_file> entries.
     """
 
     logger = logging.getLogger(__file__)
     logger.info('Start creating blog post')
 
-    post_info_df = load_post_info(post_file, blog_date)
+    post_info_df = load_post_info(post_file, blog_date, no_filter)
     #post_entry_df = create_post_entries(post_info_df)
     #post_frontmatter = create_post_frontmatter(post_info_df, blog_date)
     #store_blog(blog_file, post_frontmatter, post_entry_df)
