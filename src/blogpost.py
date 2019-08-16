@@ -2,6 +2,7 @@
 import click
 import logging
 from pathlib import Path
+import random
 
 # website download and parsing
 import json
@@ -33,12 +34,18 @@ def load_post_info(post_file, blog_date, no_filter):
     # convert to datetime
     post_info_df['uploadDate'] = pd.to_datetime(post_info_df['uploadDate'])
     post_info_df['post_date'] = [d.date() for d in post_info_df['uploadDate']]
-    # now filter
+
+    # filter for image content
+    logger.info('Filter for image content')
+    post_info_df_filtered = post_info_df[ (post_info_df['post_content_type'] == 'image') ]
+
+    # now filter for blog_date
     if no_filter:
-        post_info_df_filtered = post_info_df
+        # do nothing
+        post_info_df_filtered = post_info_df_filtered
     else:
         logger.info('Filter for post date: %s', blog_date)
-        post_info_df_filtered = post_info_df[ (post_info_df['post_date'] == blog_date) ]
+        post_info_df_filtered = post_info_df_filtered[ (post_info_df_filtered['post_date'] == blog_date) ]
 
     if len(post_info_df_filtered) < 1:
         logger.warning('No post info found. Maybe filtered out?')
@@ -215,6 +222,9 @@ def create_post_frontmatter(post_info_df, blog_date):
         logger.warning('No posts found for frontmatter.')
         return ''
 
+    # randomly select an image as cover image
+    cover_idx = random.randint(0,len(post_info_df))
+
     lb = '\n'
 
     post_frontmatter = '---'
@@ -225,7 +235,7 @@ def create_post_frontmatter(post_info_df, blog_date):
     post_frontmatter += lb
     post_frontmatter += 'menutitle: "TEST: Tourblog Post" '
     post_frontmatter += lb
-    post_frontmatter += 'cover: ' + post_info_df.loc[0, 'post_image_url']
+    post_frontmatter += 'cover: ' + post_info_df.loc[cover_idx, 'post_image_url']
     post_frontmatter += lb
     post_frontmatter += 'category: Tourblog'
     post_frontmatter += lb
@@ -254,8 +264,16 @@ def store_blog(blog_file, post_frontmatter, post_entry_df):
 
     logger.info('Write data in file: %s', blog_file)
 
+    lb = '\n'
     try:
-        post_info_df.to_csv(post_file, sep=';', encoding='utf-8', index=False)
+        with open(blog_file, 'w') as f:
+            # frontmatter
+            f.write(post_frontmatter)
+            # content
+            for index, post in post_entry_df.iterrows():
+                f.write(post['post_entry'])
+                f.write(lb)
+        f.closed
     except:
         # log error handling
         logger.error('Error writing file : %s', pos_file)
@@ -294,7 +312,7 @@ def blogpost(post_file, blog_file, blog_date, no_filter):
     post_info_df = load_post_info(post_file, blog_date, no_filter)
     post_entry_df = create_post_entries(post_info_df)
     post_frontmatter = create_post_frontmatter(post_info_df, blog_date)
-    #store_blog(blog_file, post_frontmatter, post_entry_df)
+    store_blog(blog_file, post_frontmatter, post_entry_df)
 
     if len(post_frontmatter) < 1:
         logger.info('No blog post created.')
