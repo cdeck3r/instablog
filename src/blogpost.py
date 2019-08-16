@@ -67,16 +67,14 @@ def load_post_info(post_file, blog_date, no_filter):
 # * caption
 # * paragraph
 #
-def classify_posts(post_info_df):
+def classify_posts(post_info_df,
+                    post_count_threshold = 2,
+                    caption_len_threshold = 25,
+                    caption_huge_threshold = 200,
+                    album_threshold = 8,
+                    album_img_count = 4):
 
     logger = logging.getLogger(__file__)
-
-    # Heuristics
-    post_count_threshold = 2
-    caption_len_threshold = 25
-    caption_huge_threshold = 200
-    album_threshold = 8
-    album_img_count = 4
 
     post_info_df['pres_type'] =''
     post_info_df['desc_type'] =''
@@ -138,9 +136,9 @@ def classify_posts(post_info_df):
 
 def pres_fullscreen(post):
     entry = '<figure class="large" markdown="1">'
-    entry = entry + '<p><img src=" '
+    entry = entry + '<p><img src="'
     entry = entry + post[post_image_url]
-    entry = entry + ' alt="" /></p> '
+    entry = entry + ' alt=""/></p> '
 
     if post['desc_type'] == 'caption':
         entry = entry + '<figcaption>'
@@ -156,9 +154,9 @@ def pres_fullscreen(post):
 
 def pres_regular(post):
     entry = '<figure>'
-    entry = entry + ' <img src=" '
+    entry = entry + '<img src="'
     entry = entry + post['post_image_url']
-    entry = entry + ' " /> '
+    entry = entry + '"/> '
 
     if post['desc_type'] == 'caption':
         entry = entry + '<figcaption>'
@@ -173,13 +171,13 @@ def pres_regular(post):
 
 
 def pres_leftright(post, lr_idx):
-    entry = '<p><img src=" '
+    entry = '<p><img src="'
     entry = entry + post['post_image_url']
 
     if lr_idx % 2:
-        entry = entry + '#right" alt="" />'
+        entry = entry + '#right" alt=""/>'
     else:
-        entry = entry + '#left" alt="" />'
+        entry = entry + '#left" alt=""/>'
     pass
     entry = entry + '</p>'
     if post['desc_type'] == 'paragraph':
@@ -187,7 +185,31 @@ def pres_leftright(post, lr_idx):
 
     return entry
 
-def create_post_entries(post_info_df):
+def pres_album(post_info_df, post_album_idx):
+    # album start
+    entry = '<div class="album">'
+
+    for index in post_album_idx:
+        # figure start
+        entry += '<figure>'
+        # first the image reference
+        entry += '<img src="'
+        entry += post_info_df.loc[index, 'post_image_url']
+        entry += '" />'
+        # second, the caption
+        entry += '<figcaption>'
+        entry += post_info_df.loc[index, 'caption']
+        entry += '</figcaption>'
+        # figure end
+        entry += '</figure>'
+
+    # album end
+    entry += '</div>'
+
+    return entry
+
+
+def create_post_entries(post_info_df, album_img_count=4):
     logger = logging.getLogger(__file__)
 
     if len(post_info_df) < 1:
@@ -199,12 +221,14 @@ def create_post_entries(post_info_df):
 
     # apply heuristics to indicate for each entry
     # the type of presentation
-    post_info_df = classify_posts(post_info_df)
+    post_info_df = classify_posts(post_info_df, album_img_count=album_img_count)
     post_info_df['post_entry'] = ''
 
     # posts are classified
     # let's render the presentation
     lr_idx = 0
+    # album image accumulator
+    post_album_idx = []
     for index, post in post_info_df.iterrows():
         if post['pres_type'] == 'fullscreen':
             logger.debug('Render [fullscreen] for post: %s', post['shortcode'])
@@ -213,6 +237,21 @@ def create_post_entries(post_info_df):
         if post['pres_type'] == 'regular':
             logger.debug('Render [regular] for post: %s', post['shortcode'])
             post_info_df.loc[index, 'post_entry'] = pres_regular(post)
+
+        if post['pres_type'] == 'album':
+            logger.debug('Render [album] for post: %s', post['shortcode'])
+            if len(post_album_idx) < (album_img_count-2):
+                # accumulate image for album
+                post_album_idx.append(index)
+            else:
+                #add this last image to album
+                post_album_idx.append(index)
+
+                logger.debug('Album images to render: %d', len(post_album_idx))
+                # render album
+                post_info_df.loc[index, 'post_entry'] = pres_album(post_info_df, post_album_idx)
+                # reset album image accumulator
+                post_album_idx = []
 
         if post['pres_type'] == 'leftright':
             logger.debug('Render [leftright] for post: %s', post['shortcode'])
@@ -333,7 +372,7 @@ def blogpost(post_file, blog_file, blog_date, no_filter):
 #############################################
 if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.DEBUG, format=log_fmt)
+    logging.basicConfig(level=logging.INFO, format=log_fmt)
 
     # not used in this stub but often useful for finding various files
     project_dir = Path(__file__).resolve().parents[2]
