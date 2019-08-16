@@ -75,7 +75,7 @@ def classify_posts(post_info_df):
     post_count_threshold = 2
     caption_len_threshold = 25
     caption_huge_threshold = 200
-    album_threshold = 12
+    album_threshold = 8
     album_img_count = 4
 
     post_info_df['pres_type'] =''
@@ -123,6 +123,12 @@ def classify_posts(post_info_df):
         img_idx = 0
         for index, post in post_info_df.iterrows():
             if (post['pres_type'] == 'regular') and (img_idx % album_img_count == 0):
+                # we leave it as it is
+                img_idx = img_idx + 1
+                logger.debug('Remain classification [regular] for post: %s', post['shortcode'])
+                continue
+
+            if (post['pres_type'] == 'regular') and (img_idx % album_img_count > 0):
                 post_info_df.loc[index, 'pres_type'] = 'album'
                 img_idx = img_idx + 1
                 logger.debug('Classify [album / caption] for post: %s', post['shortcode'])
@@ -223,7 +229,7 @@ def create_post_frontmatter(post_info_df, blog_date):
         return ''
 
     # randomly select an image as cover image
-    cover_idx = random.randint(0,len(post_info_df))
+    cover_idx = random.randint(0,len(post_info_df)-1)
 
     lb = '\n'
 
@@ -327,7 +333,7 @@ def blogpost(post_file, blog_file, blog_date, no_filter):
 #############################################
 if __name__ == '__main__':
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
+    logging.basicConfig(level=logging.DEBUG, format=log_fmt)
 
     # not used in this stub but often useful for finding various files
     project_dir = Path(__file__).resolve().parents[2]
