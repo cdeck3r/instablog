@@ -276,6 +276,29 @@ def create_post_entries(post_info_df, album_img_count=4):
 
     return post_info_df
 
+# simple and pragmatic approach
+# enumerate blog posts by the day in relation to a reference date
+# default: the tour start
+def create_title_refdate(post_info_df, blog_date, ref_date = '2019-08-22'):
+    ref_date = pd.to_datetime(ref_date).date()
+    blog_date = pd.to_datetime(blog_date).date()
+    tourday =  (blog_date - ref_date).days
+
+    if tourday < 0:
+        title = 'Noch ' + str(abs(tourday)) + ' Tage bis zum Tourstart'
+    elif tourday == 0:
+        title =  'Heute ist Tourstart'
+    else:
+        title = 'Tourtag: ' + str(tourday)
+
+    return title
+
+#
+# A rather generic function
+# to encapsulate the concrete one
+def create_title(post_info_df, blog_date):
+    return create_title_refdate(post_info_df, blog_date)
+
 def create_post_frontmatter(post_info_df, blog_date):
     logger = logging.getLogger(__file__)
 
@@ -285,16 +308,18 @@ def create_post_frontmatter(post_info_df, blog_date):
 
     # randomly select an image as cover image
     cover_idx = random.randint(0,len(post_info_df)-1)
-
+    # determine title
+    title = create_title(post_info_df, blog_date)
+    # linebreak char
     lb = '\n'
 
     post_frontmatter = '---'
     post_frontmatter += lb
     post_frontmatter += 'layout: post'
     post_frontmatter += lb
-    post_frontmatter += 'title: "TEST: Tourblog Post" '
+    post_frontmatter += 'title: "' + title + '"'
     post_frontmatter += lb
-    post_frontmatter += 'menutitle: "TEST: Tourblog Post" '
+    post_frontmatter += 'menutitle: "' + title + '"'
     post_frontmatter += lb
     post_frontmatter += 'cover: ' + post_info_df.loc[cover_idx, 'post_image_url']
     post_frontmatter += lb
