@@ -21,4 +21,4 @@
 #
 # m h  dom mon dow   command
 #
-30,58 * * * * /home/cdeck3r/instablog/deploy/cron_instablog.sh >/dev/null 2>&1 
+58 * * * * /home/cdeck3r/instablog/deploy/cron_instablog.sh >/dev/null 2>&1 
