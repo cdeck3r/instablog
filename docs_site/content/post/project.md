@@ -20,9 +20,8 @@ New posts on our [Instagram account](//www.instagram.com/dramalamas.tours2019/) 
 * To enable automatic download of new instagram posts filtered by a given date
 * To enable the automatic creation of blog posts from instagram posts of that date
 * To let the blog post have a URL reference back to the genuine instagram post
-* To enable the software to monitor and run the blog post creation on a regular basis, e.g. at a hourly interval
+* To run the blog post creation on a regular basis, e.g. at a hourly interval
 * To be able to single-click deploy the software on a Virtual Private Server
-* To enable a periodic, e.g. hourly, profile-blog crossposting
 * Optionally: To enable a simple remote monitoring notifying the regular successful or failed run
 
 ### Valueable Contributions

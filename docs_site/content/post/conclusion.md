@@ -17,9 +17,8 @@ The list below displays the achieved objectives:
 * [x] To enable automatic download of new instagram posts filtered by a given date
 * [x] To enable the automatic creation of blog posts from instagram posts of that date
 * [ ] To let the blog post have a URL reference back to the genuine instagram post
-* [ ] To enable the software to monitor and run the blog post creation on a regular basis, e.g. at a hourly interval
+* [x] To run the blog post creation on a regular basis, e.g. at a hourly interval
 * [x] To be able to single-click deploy the software on a Virtual Private Server
-* [x] To enable a periodic, e.g. hourly, profile-blog crossposting
 * [ ] Optionally: To enable a simple remote monitoring notifying the regular successful or failed run
 ### Conclusion
 
