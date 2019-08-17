@@ -31,6 +31,7 @@ BLOG_POSTFILE="$DATAROOT"/"$BLOG_DATE"-instablog.md
 #
 
 BLOGPOST="$SCRIPT_DIR"/../src/blogpost.py
+BLOGPOST_GIT="$SCRIPT_DIR"/instapost_github.sh
 
 # include common funcs
 source ./funcs.sh
@@ -53,5 +54,6 @@ mkdir -p "$DATAROOT"
 
 # use -f if you do not want to filter for BLOG_DATE
 python "$BLOGPOST" "$DATAFILE_POSTINFO" "$BLOG_POSTFILE" "$BLOG_DATE" -f
+"$BLOGPOST_GIT" "$DATAROOT"
 
 log_echo "INFO" "Blogpost done"
