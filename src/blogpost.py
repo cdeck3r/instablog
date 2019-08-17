@@ -139,7 +139,7 @@ def pres_fullscreen(post):
     entry = '<figure class="large" markdown="1">'
     entry = entry + '<p><img src="'
     entry = entry + post['post_image_url']
-    entry = entry + ' alt=""/></p> '
+    entry = entry + '" alt=""/></p> '
 
     if post['desc_type'] == 'caption':
         entry = entry + '<figcaption>'
