@@ -111,7 +111,8 @@ log_echo "INFO" "GITHUB_URL: ${GITHUB_URL}"
 log_echo "INFO" "POST_DATE: ${POST_DATE}"
 
 # Note about the remote update
-if [ -z $GITHUB_URL ]; then
+
+if [ -z "${GITHUB_URL+x}" ]; then
     log_echo "WARN" "No GITHUB_URL specified. Will not update remote blog."
 fi
 
