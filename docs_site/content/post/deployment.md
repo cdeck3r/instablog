@@ -7,7 +7,9 @@ sec = 20
 +++
 
 
-The software shall run on a Linux Server. We assume, the instablog installation resides in `$HOME/instablog`.
+The software shall run on a Linux Server. The server deployment and execution scripts are contained in https://github.com/cdeck3r/instablog/tree/master/deploy.
+
+We assume, the instablog installation resides in `$HOME/instablog`.
 
 ### Update
 

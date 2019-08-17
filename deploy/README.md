@@ -1,4 +1,4 @@
-# instablog Deployment and Run
+# instablog Deployment and Execution
 
 Server software for automatically creating daily blog posts from Instagram posts
 
