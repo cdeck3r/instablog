@@ -21,6 +21,8 @@ SCRIPT_NAME=$0
 DATAROOT=$1
 # blog date, YYYY-MM-DD
 BLOG_DATE=$2
+# URL to Github repo containing the website
+GITHUB_URL=$3
 # File path containing all relevant post information
 DATAFILE_POSTINFO="$DATAROOT"/postinfo.csv
 # the name of the file storing posts' shortcodes
@@ -31,6 +33,7 @@ BLOG_POSTFILE="$DATAROOT"/"$BLOG_DATE"-instablog.md
 #
 
 BLOGPOST="$SCRIPT_DIR"/../src/blogpost.py
+BLOGPOST_GIT="$SCRIPT_DIR"/blogpost_github.sh
 
 # include common funcs
 source ./funcs.sh
@@ -53,5 +56,8 @@ mkdir -p "$DATAROOT"
 
 # use -f if you do not want to filter for BLOG_DATE
 python "$BLOGPOST" "$DATAFILE_POSTINFO" "$BLOG_POSTFILE" "$BLOG_DATE" -f
+
+log_echo "INFO" "Upload blog post to github."
+"$BLOGPOST_GIT" "$DATAROOT" "$GITHUB_URL"
 
 log_echo "INFO" "Blogpost done"

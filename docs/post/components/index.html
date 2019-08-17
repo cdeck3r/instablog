@@ -174,10 +174,10 @@ body {
 
 <p><strong>Invoke blogpost:</strong> The entry point is always the shell script.</p>
 
-<pre><code class="language-bash">./blogpost.sh /tmp 2019-08-16
+<pre><code class="language-bash">./blogpost.sh /tmp 2019-08-16 https://github.com/&lt;user&gt;/&lt;repo&gt;.git
 </code></pre>
 
-<p>The <code>/tmp</code> directory serves a dataroot. Filenames are set by convention through the script. The blog date must be in format YYYY-MM-DD. A successful script run will generate <code>2019-08-16-instablog.md</code> file the <code>/tmp</code> directory when called with the parameters from above.</p>
+<p>The <code>/tmp</code> directory serves a dataroot. Filenames are set by convention through the script. The blog date must be in format YYYY-MM-DD. A successful script run will generate <code>2019-08-16-instablog.md</code> file the <code>/tmp</code> directory when called with the parameters from above. At the end the scripts uploads the newly created file to the github repository specified the last parameter.</p>
 
         </div>
     </div>

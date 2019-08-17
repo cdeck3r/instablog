@@ -6,10 +6,22 @@
     <description>Recent content in Sections on Instablog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Aug 2019 00:20:13 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 17 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://cdeck3r.com/instablog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deployment and Execution</title>
+      <link>http://cdeck3r.com/instablog/post/deployment/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/deployment/</guid>
+      <description>The software shall run on a Linux Server. The server deployment and execution scripts are contained in https://github.com/cdeck3r/instablog/tree/master/deploy.
+Initial Installation We assume, the instablog installation resides in $HOME/instablog. Initially, clone the instablog repo when in $HOME. This will create the instablog directory.
+cd $HOME git clone https://github.com/cdeck3r/instablog.git cd instablog  Update After the initial installation further updates or changes can be installed. Run the update script as follows.
+$HOME/instablog/deploy/update_instablog.sh  It will update the instablog installation from the Github repo.</description>
+    </item>
     
     <item>
       <title>blogpost: Layout</title>
@@ -83,8 +95,7 @@ Important websites
       <guid>http://cdeck3r.com/instablog/post/conclusion/</guid>
       <description>This section concludes the project.
 Summary The list below displays the achieved objectives:
-&amp;hellip; &amp;hellip;  Conclusion Instablog autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.
-Final Note I took this exercise as an test case how fast I develop a small end-to-end software. In particular, this encompasses the use of Docker, Makefile, various scripting languages, version control, parallel documentation and many other development activities.</description>
+To setup a github project framework and development environment To include a project blog for documentation To enable automatic download of new instagram posts filtered by a given date To enable the automatic creation of blog posts from instagram posts of that date To let the blog post have a URL reference back to the genuine instagram post To enable the software to monitor and run the blog post creation on a regular basis, e.</description>
     </item>
     
     <item>

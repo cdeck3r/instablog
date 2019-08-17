@@ -54,7 +54,7 @@ The software component consists of two parts.
 
 **Invoke blogpost:** The entry point is always the shell script.
 ``` bash
-./blogpost.sh /tmp 2019-08-16
+./blogpost.sh /tmp 2019-08-16 https://github.com/<user>/<repo>.git
 ```
 
-The `/tmp` directory serves a dataroot. Filenames are set by convention through the script. The blog date must be in format YYYY-MM-DD. A successful script run will generate `2019-08-16-instablog.md` file the `/tmp` directory when called with the parameters from above.
+The `/tmp` directory serves a dataroot. Filenames are set by convention through the script. The blog date must be in format YYYY-MM-DD. A successful script run will generate `2019-08-16-instablog.md` file the `/tmp` directory when called with the parameters from above. At the end the scripts uploads the newly created file to the github repository specified the last parameter.

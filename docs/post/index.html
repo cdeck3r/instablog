@@ -443,10 +443,10 @@ Updating the blog is a git commit activity.</p>
 
 <p><strong>Invoke blogpost:</strong> The entry point is always the shell script.</p>
 
-<pre><code class="language-bash">./blogpost.sh /tmp 2019-08-16
+<pre><code class="language-bash">./blogpost.sh /tmp 2019-08-16 https://github.com/&lt;user&gt;/&lt;repo&gt;.git
 </code></pre>
 
-<p>The <code>/tmp</code> directory serves a dataroot. Filenames are set by convention through the script. The blog date must be in format YYYY-MM-DD. A successful script run will generate <code>2019-08-16-instablog.md</code> file the <code>/tmp</code> directory when called with the parameters from above.</p>
+<p>The <code>/tmp</code> directory serves a dataroot. Filenames are set by convention through the script. The blog date must be in format YYYY-MM-DD. A successful script run will generate <code>2019-08-16-instablog.md</code> file the <code>/tmp</code> directory when called with the parameters from above. At the end the scripts uploads the newly created file to the github repository specified the last parameter.</p>
 
                 </div>
             </div>
@@ -625,6 +625,101 @@ Default POST_DATE: 2019-08-15
                 <div>
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
+                    <h2 class="section-heading">Deployment and Execution</h2>
+                    
+
+<p>The software shall run on a Linux Server. The server deployment and execution scripts are contained in <a href="https://github.com/cdeck3r/instablog/tree/master/deploy">https://github.com/cdeck3r/instablog/tree/master/deploy</a>.</p>
+
+<h3 id="initial-installation">Initial Installation</h3>
+
+<p>We assume, the instablog installation resides in <code>$HOME/instablog</code>. Initially, clone the instablog repo when in <code>$HOME</code>. This will create the <code>instablog</code> directory.</p>
+
+<pre><code class="language-bash">cd $HOME
+git clone https://github.com/cdeck3r/instablog.git
+cd instablog
+</code></pre>
+
+<h3 id="update">Update</h3>
+
+<p>After the initial installation further updates or changes can be installed.
+Run the update script as follows.</p>
+
+<pre><code class="language-bash">$HOME/instablog/deploy/update_instablog.sh
+</code></pre>
+
+<p>It will update the <code>instablog</code> installation from the <a href="https://github.com/cdeck3r/instablog">Github repo</a>.</p>
+
+<p><strong>Note:</strong> The update script assumes <code>$HOME/instablog</code> as the installation directory.</p>
+
+<h3 id="run-instablog">Run instablog</h3>
+
+<p>You may run the instablog main script from the command line or using a wrapper script in a periodic cronjob.</p>
+
+<h5 id="run-from-command-line"><strong>Run from Command Line</strong></h5>
+
+<p>First, change into the instablog installation directory.</p>
+
+<pre><code class="language-bash">cd $HOME/instablog
+</code></pre>
+
+<p>Then create the virtualenv <code>venv</code> and activtate it.</p>
+
+<pre><code class="language-bash">make venv
+source venv/bin/activate
+</code></pre>
+
+<p>Now, run the instablog main script after defining some variables used as script&rsquo;s parameters.</p>
+
+<pre><code class="language-bash">DATAROOT = ...
+PROFILE_URL = ...
+GITHUB_URL = ...
+
+cd scripts
+./instablog.sh -r &quot;$DATAROOT&quot; -p &quot;$PROFILE_URL&quot; -g &quot;$GITHUB_URL&quot;
+</code></pre>
+
+<p>Finally, at the end, deactivate the <code>venv</code> again.</p>
+
+<pre><code class="language-bash">cd $HOME/instablog
+deactivate
+</code></pre>
+
+<h5 id="run-instablog-as-a-cronjob"><strong>Run instablog as a cronjob</strong></h5>
+
+<p>The wrapper script may be used as entry script for a cronjob.
+Install a cronjob calling the following script.</p>
+
+<pre><code class="language-bash">$HOME/instablog/deploy/cron_instablog.sh
+</code></pre>
+
+<p>The <code>cron_instablog.sh</code> activates the venv, defines the data directory and the URLs for the Instagram profile and the Github blog. It runs <code>instablog.sh</code> script and at the end, the script deactivates the venv.</p>
+
+<p>You install provided the cronjob example <a href="https://github.com/cdeck3r/instablog/blob/master/deploy/numb3rspipeline.crontab">instablog.crontab</a></p>
+
+<pre><code class="language-bash">crontab instablog.crontab
+crontab -l
+</code></pre>
+
+<p>The last line verifies that the cronjob got installed. The example schedules the script once an hour at minute 58. So, it runs 0:58, 1:58, 2:58, &hellip;</p>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+	 
+    <div class="content-section-a">
+    
+   
+        <div class="container">
+
+            <div class="row">
+                <div>
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
                     <h2 class="section-heading">Conclusion</h2>
                     
 
@@ -635,11 +730,18 @@ Default POST_DATE: 2019-08-15
 <p>The list below displays the achieved objectives:</p>
 
 <ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> &hellip;</label></li>
-<li><label><input type="checkbox" disabled class="task-list-item"> &hellip;</label></li>
-</ul>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> To setup a github project framework and development environment</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> To include a project blog for documentation</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> To enable automatic download of new instagram posts filtered by a given date</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> To enable the automatic creation of blog posts from instagram posts of that date</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> To let the blog post have a URL reference back to the genuine instagram post</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> To enable the software to monitor and run the blog post creation on a regular basis, e.g. at a hourly interval</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> To be able to single-click deploy the software on a Virtual Private Server</label></li>
 
-<h3 id="conclusion">Conclusion</h3>
+<li><p>[ ] Optionally: To enable a simple remote monitoring notifying the regular successful or failed run</p>
+
+<h3 id="conclusion">Conclusion</h3></li>
+</ul>
 
 <p><a href="//github.com/cdeck3r/instablog">Instablog</a> autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.</p>
 
@@ -649,7 +751,7 @@ Default POST_DATE: 2019-08-15
 
 <p>Instablog runs unattended on a server on the Internet. The software is split into different small components. It is kept intentionelly lean by using the filesystem as middleware between components. I utilized the approach of <a href="https://en.wikipedia.org/wiki/Convention_over_configuration">convention over configuration</a>, not only to speed up development, but to achieve resilience, too.</p>
 
-<p>Still, lot&rsquo;s of things are missing. The shell scripts do not check for parameters when invoked. There are no unit tests at all. It is unclear what happens, if the scripts meet a video or other content other than images.</p>
+<p>Still, lot&rsquo;s of things are missing. The shell scripts do not check for parameters when invoked. There are no unit tests at all. It is unclear what happens, if the scripts meet a video or other content other than images. The python code requires improvement. There are lots of <code>for</code> loops and <code>if/then</code> statements instead of <code>map</code> or <code>apply</code> and <code>switch/case</code> statements. The Instagram images link to a content delivery network (CDN). It is unclear, wether the links will stay constant over time. An enhancement option is to download the images and store them for the blog.</p>
 
                 </div>
             </div>
