@@ -6,7 +6,7 @@ Server software for automatically creating daily blog posts from Instagram posts
 
 The project has its own website under http://cdeck3r.com/instablog.
 
-## Deployment for Update
+## Installation
 
 The software shall run on a Linux Server. We assume, the instablog installation resides in `$HOME/instablog`.
 
@@ -17,6 +17,8 @@ cd $HOME
 git clone https://github.com/cdeck3r/instablog.git
 cd instablog
 ```
+
+## Update
 
 Run the `update_instablog.sh` script to update the `instablog` installation from the [Github repo](https://github.com/cdeck3r/instablog). Note, the update script hard-codes the installation directory.
 
