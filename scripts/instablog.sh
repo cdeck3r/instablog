@@ -71,23 +71,28 @@ while :; do
             exit 1
             ;;
         -r|--dataroot)
-            DATAROOT=$2
+            DATAROOT="$2"
             OPT_CNT=$((OPT_CNT + 1))
+            shift
             ;;
         -p|--profile)
-            PROFILE_URL=$2
+            PROFILE_URL="$2"
             OPT_CNT=$((OPT_CNT + 1))
+            shift
             ;;
         -g|--github)
-            GITHUB_URL=$2
+            GITHUB_URL="$2"
             OPT_CNT=$((OPT_CNT + 1))
+            shift
             ;;
         -d|--postdate)
-            POST_DATE=$2
+            POST_DATE="$2"
             OPT_CNT=$((OPT_CNT + 1))
+            shift
             ;;
         -?*)
             printf 'WARN: Unknown option (ignored): %s\n' "$1" >&2
+            shift
             ;;
         *)  # Default case: no more options; test required param and break out
 			if [ "$OPT_CNT" -ge 0 ]
