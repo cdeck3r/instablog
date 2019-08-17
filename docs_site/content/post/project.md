@@ -22,6 +22,7 @@ New posts on our [Instagram account](//www.instagram.com/dramalamas.tours2019/) 
 * To let the blog post have a URL reference back to the genuine instagram post
 * To enable the software to monitor and run the blog post creation on a regular basis, e.g. at a hourly interval
 * To be able to single-click deploy the software on a Virtual Private Server
+* To enable a periodic, e.g. hourly, profile-blog crossposting
 * Optionally: To enable a simple remote monitoring notifying the regular successful or failed run
 
 ### Valueable Contributions
@@ -31,7 +32,7 @@ Instablog has some features, where it may have an advantage over alternative sol
 * Keeps track of the complete feed history
 * Highly modular and easy to extend because of a file system based interface using `.csv` files
 
-However, instablog requires a Linux server to run. One may think to parasitically run instablog on [Travis](https://travis-ci.org/). 
+However, instablog requires a Linux server to run. One may think to parasitically run instablog on [Travis](https://travis-ci.org/).
 
 ### Alternative Solutions
 
