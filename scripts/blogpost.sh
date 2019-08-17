@@ -31,7 +31,7 @@ BLOG_POSTFILE="$DATAROOT"/"$BLOG_DATE"-instablog.md
 #
 
 BLOGPOST="$SCRIPT_DIR"/../src/blogpost.py
-BLOGPOST_GIT="$SCRIPT_DIR"/instapost_github.sh
+BLOGPOST_GIT="$SCRIPT_DIR"/blogpost_github.sh
 
 # include common funcs
 source ./funcs.sh

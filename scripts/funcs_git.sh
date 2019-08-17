@@ -18,7 +18,7 @@ command -v "$GIT" >/dev/null 2>&1 \
 
 # Test if Github access token is defined
 if [ -z "${GITHUB_ACCESS_TOKEN+x}" ]; then
-    log_echo "WARN" "Github OATH access token not set. No push possible."
+    log_echo "WARN" "Github access token not set. No push possible."
 fi
 
 #
