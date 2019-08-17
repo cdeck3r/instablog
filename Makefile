@@ -54,7 +54,7 @@ endif
 #################################################################################
 
 ## Install Python Dependencies
-requirements: 
+requirements:
 	pip install --no-cache-dir -U pip setuptools wheel
 	pip install --no-cache-dir -r requirements.txt
 
@@ -73,7 +73,7 @@ test:
 
 
 ## Set up python interpreter environment and install the requirements.txt
-create_environment: test_environment requirements.txt
+create_environment: requirements.txt
 ifeq (True,$(HAS_CONDA))
 		@echo ">>> Detected conda, creating conda environment."
 ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
