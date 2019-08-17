@@ -21,6 +21,7 @@ SCRIPT_NAME=$0
 DATAROOT="/tmp" # default value
 # Instagram profile URL
 PROFILE_URL="https://www.instagram.com/koloot.design/" # default value
+#PROFILE_URL="https://www.instagram.com/dramalamas.tours2019/"
 # Github blog URL
 GITHUB_URL=  # no default value
 #GITHUB_URL="https://github.com/dramalamas/dramalamas.github.io"
@@ -33,6 +34,7 @@ POST_DATE=$(date '+%Y-%m-%d') # today's date, format: yyyy-mm-dd
 INSTACRAWLER="$SCRIPT_DIR"/instacrawler.sh
 INSTAPOST="$SCRIPT_DIR"/instapost.sh
 BLOGPOST="$SCRIPT_DIR"/blogpost.sh
+BLOGPOST_GIT="$SCRIPT_DIR"/blogpost_github.sh
 
 # include common funcs
 source ./funcs.sh
@@ -130,6 +132,6 @@ mkdir -p "$DATAROOT"
 "$INSTACRAWLER" "$DATAROOT" "$PROFILE_URL"
 "$INSTAPOST" "$DATAROOT"
 "$BLOGPOST" "$DATAROOT" "$POST_DATE"
-
+"$BLOGPOST_GIT" "$DATAROOT"
 
 log_echo "INFO" "Instablog done"
