@@ -34,6 +34,7 @@ POST_DATE=$(date '+%Y-%m-%d') # today's date, format: yyyy-mm-dd
 INSTACRAWLER="$SCRIPT_DIR"/instacrawler.sh
 INSTAPOST="$SCRIPT_DIR"/instapost.sh
 BLOGPOST="$SCRIPT_DIR"/blogpost.sh
+FEED_HISTORY="$SCRIPT_DIR"/feed_history.sh
 
 # include common funcs
 source ./funcs.sh
@@ -134,6 +135,7 @@ mkdir -p "$DATAROOT"
 ##################################
 
 "$INSTACRAWLER" "$DATAROOT" "$PROFILE_URL"
+"$FEED_HISTORY" "$DATAROOT" "$POST_DATE"
 "$INSTAPOST" "$DATAROOT"
 "$BLOGPOST" "$DATAROOT" "$POST_DATE" "$GITHUB_URL"
 
