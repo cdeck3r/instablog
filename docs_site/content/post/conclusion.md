@@ -20,6 +20,7 @@ The list below displays the achieved objectives:
 * [x] To run the blog post creation on a regular basis, e.g. at a hourly interval
 * [x] To be able to single-click deploy the software on a Virtual Private Server
 * [ ] Optionally: To enable a simple remote monitoring notifying the regular successful or failed run
+
 ### Conclusion
 
 [Instablog](//github.com/cdeck3r/instablog) autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.
