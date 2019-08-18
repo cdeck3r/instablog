@@ -55,7 +55,7 @@ mkdir -p "$DATAROOT"
 ##################################
 
 # use -f if you do not want to filter for BLOG_DATE
-python "$BLOGPOST" "$DATAFILE_POSTINFO" "$BLOG_POSTFILE" "$BLOG_DATE" -f
+python "$BLOGPOST" "$DATAFILE_POSTINFO" "$BLOG_POSTFILE" "$BLOG_DATE"
 
 log_echo "INFO" "Upload blog post to github."
 "$BLOGPOST_GIT" "$DATAROOT" "$GITHUB_URL"
