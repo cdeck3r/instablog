@@ -309,6 +309,7 @@ def create_post_frontmatter(post_info_df, blog_date):
         logger.warning('No posts found for frontmatter.')
         return ''
 
+    post_info_df = post_info_df.reset_index(drop=True)
     # randomly select an image as cover image
     cover_idx = random.randint(0,len(post_info_df)-1)
     # determine title
