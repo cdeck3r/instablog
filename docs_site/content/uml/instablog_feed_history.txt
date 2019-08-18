@@ -1,0 +1,23 @@
+@startumlsc_modern
+skinparam monochrome true
+skinparam componentStyle uml2
+
+
+instablog -> instacrawler
+
+entity shortcodes.csv
+
+instacrawler -> shortcodes.csv : <<create>>
+instacrawler --> instablog
+
+group feed history
+    instablog -> feed_history
+    feed_history -> shortcodes.csv : <<update>>
+    feed_history --> instablog
+end
+
+instablog -> instapost
+instapost -> shortcodes.csv : <<use>>
+instapost --> instablog
+
+@enduml
