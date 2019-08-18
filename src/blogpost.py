@@ -289,6 +289,8 @@ def create_title_refdate(post_info_df, blog_date, ref_date = '2019-08-22'):
     elif tourday == 0:
         title =  'Heute ist Tourstart'
     else:
+        # because tourday 0 is tourstart and tourday 1 at the same time
+        tourday += 1
         title = 'Tourtag: ' + str(tourday)
 
     return title
