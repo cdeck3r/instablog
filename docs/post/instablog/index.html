@@ -177,9 +177,20 @@ Default POST_DATE: 2019-08-15
 
 <p>This idea is simple and effective. After each run of the <code>instacrawler</code> component, it simply adds the current posts to the ones from the previous run. Run after run, it builds up history of posts. The frequency of the crawler&rsquo;s runs depends on how often we would post new images on Instagram. The recent post limit is only valid for a single website lookup. If the crawler runs frequently enough, the risk is low it would miss any post.</p>
 
-<p>Option 3 is easy to implement. The <code>instablog</code> main script records the results file, that is the <code>shortcodes.csv</code> file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the <code>instapost</code> script for the next step.</p>
+<p>Option 3 is easy to implement. The <code>instablog</code> main script records the results file, that is the <code>shortcodes.csv</code> file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the <code>instapost</code> script for the next step. The following sequence diagram depicts the embedding of the feed history feature in the <code>instablog</code> main script.</p>
+
+<p><img src="uml/instablog_feed_history.png" alt="feed history sequence diagram" /></p>
 
 <p>One thing left. Option 3 only works from the day on when <code>instablog</code> starts. It can&rsquo;t restore a feed history from the past. When <code>instablog</code> starts the regular operation from the first time, it initializes the feed history. Subsequently, it must frequently run with no longer breaks to keep up with the feed history.</p>
+
+<h3 id="feed-history-state-based-crawler">Feed History: State-based Crawler</h3>
+
+<p>The feed history features extends the <code>instablog</code> main script.
+Th feed history stores a copy of the current <code>shortcodes.csv</code> file as a date stamp version, merges all versions of a day, and creates a new  <code>shortcodes.csv</code> file with all contents. The next component, <code>instapost</code>, continues with the newly created shortcodes file.</p>
+
+<p>The following activity diagram depicts how the <code>feed_history.sh</code> script works.</p>
+
+<p><img src="uml/feed_history.png" alt="feed_history activity diagram" /></p>
 
         </div>
     </div>

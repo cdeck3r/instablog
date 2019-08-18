@@ -137,11 +137,10 @@ body {
 <li><label><input type="checkbox" disabled class="task-list-item"> To let the blog post have a URL reference back to the genuine instagram post</label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> To run the blog post creation on a regular basis, e.g. at a hourly interval</label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> To be able to single-click deploy the software on a Virtual Private Server</label></li>
-
-<li><p>[ ] Optionally: To enable a simple remote monitoring notifying the regular successful or failed run</p>
-
-<h3 id="conclusion">Conclusion</h3></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Optionally: To enable a simple remote monitoring notifying the regular successful or failed run</label></li>
 </ul>
+
+<h3 id="conclusion">Conclusion</h3>
 
 <p><a href="//github.com/cdeck3r/instablog">Instablog</a> autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.</p>
 
@@ -151,7 +150,7 @@ body {
 
 <p>Instablog runs unattended on a server on the Internet. The software is split into different small components. It is kept intentionelly lean by using the filesystem as middleware between components. I utilized the approach of <a href="https://en.wikipedia.org/wiki/Convention_over_configuration">convention over configuration</a>, not only to speed up development, but to achieve resilience, too.</p>
 
-<p>Still, lot&rsquo;s of things are missing. The shell scripts do not check for parameters when invoked. There are no unit tests at all. It is unclear what happens, if the scripts meet a video or other content other than images. The python code requires improvement. There are lots of <code>for</code> loops and <code>if/then</code> statements instead of <code>map</code> or <code>apply</code> and <code>switch/case</code> statements. The Instagram images link to a content delivery network (CDN). It is unclear, wether the links will stay constant over time. An enhancement option is to download the images and store them for the blog.</p>
+<p>Still, lots of things are missing. The shell scripts do not check for parameters when invoked. There are no unit tests at all. It is unclear what happens, if the scripts meet a video or other content other than images. The python code requires improvement. There are lots of <code>for</code> loops and <code>if/then</code> statements instead of <code>map</code> or <code>apply</code> and <code>switch/case</code> statements. The Instagram images link to a content delivery network (CDN). It is unclear, wether the links will stay constant over time. An enhancement option is to download the images and store them for the blog.</p>
 
         </div>
     </div>

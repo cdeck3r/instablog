@@ -1,0 +1,28 @@
+@startumlsc_modern
+skinparam monochrome true
+skinparam componentStyle uml2
+
+|feed_history|
+start
+
+:Copy shortcodes.csv
+for the records;
+
+|#AntiqueWhite|File System|
+:<YYYY-MM-DD>-<HHMMSS>-shortcodes.csv]
+
+|feed_history|
+partition "foreach *-shortcodes.csv" {
+    :Read in files
+    and merge;
+}
+
+:Remove duplicates;
+:Create and store file;
+
+|File System|
+:shortcodes.csv]
+
+stop
+
+@enduml

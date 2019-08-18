@@ -641,9 +641,20 @@ Default POST_DATE: 2019-08-15
 
 <p>This idea is simple and effective. After each run of the <code>instacrawler</code> component, it simply adds the current posts to the ones from the previous run. Run after run, it builds up history of posts. The frequency of the crawler&rsquo;s runs depends on how often we would post new images on Instagram. The recent post limit is only valid for a single website lookup. If the crawler runs frequently enough, the risk is low it would miss any post.</p>
 
-<p>Option 3 is easy to implement. The <code>instablog</code> main script records the results file, that is the <code>shortcodes.csv</code> file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the <code>instapost</code> script for the next step.</p>
+<p>Option 3 is easy to implement. The <code>instablog</code> main script records the results file, that is the <code>shortcodes.csv</code> file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the <code>instapost</code> script for the next step. The following sequence diagram depicts the embedding of the feed history feature in the <code>instablog</code> main script.</p>
+
+<p><img src="uml/instablog_feed_history.png" alt="feed history sequence diagram" /></p>
 
 <p>One thing left. Option 3 only works from the day on when <code>instablog</code> starts. It can&rsquo;t restore a feed history from the past. When <code>instablog</code> starts the regular operation from the first time, it initializes the feed history. Subsequently, it must frequently run with no longer breaks to keep up with the feed history.</p>
+
+<h3 id="feed-history-state-based-crawler">Feed History: State-based Crawler</h3>
+
+<p>The feed history features extends the <code>instablog</code> main script.
+Th feed history stores a copy of the current <code>shortcodes.csv</code> file as a date stamp version, merges all versions of a day, and creates a new  <code>shortcodes.csv</code> file with all contents. The next component, <code>instapost</code>, continues with the newly created shortcodes file.</p>
+
+<p>The following activity diagram depicts how the <code>feed_history.sh</code> script works.</p>
+
+<p><img src="uml/feed_history.png" alt="feed_history activity diagram" /></p>
 
                 </div>
             </div>
@@ -664,81 +675,18 @@ Default POST_DATE: 2019-08-15
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Deployment and Execution</h2>
-                    
+                    <p>The design of the instablog deployment consists of several scripts with the following features</p>
 
-<p>The software shall run on a Linux Server. The server deployment and execution scripts are contained in <a href="https://github.com/cdeck3r/instablog/tree/master/deploy">https://github.com/cdeck3r/instablog/tree/master/deploy</a>.</p>
+<ul>
+<li>install from Github repository</li>
+<li>update from repository</li>
+<li>setup a cronjob for periodic execution</li>
+<li>update the Github hosted blog<br /></li>
+</ul>
 
-<h3 id="initial-installation">Initial Installation</h3>
+<p>The software shall run on a Linux Server. Details of the server deployment and  detailed instructions how to run instablog manually and via a wrapper script are described in the <a href="https://github.com/cdeck3r/instablog/tree/master/deploy">deployment instructions</a>.</p>
 
-<p>We assume, the instablog installation resides in <code>$HOME/instablog</code>. Initially, clone the instablog repo when in <code>$HOME</code>. This will create the <code>instablog</code> directory.</p>
-
-<pre><code class="language-bash">cd $HOME
-git clone https://github.com/cdeck3r/instablog.git
-cd instablog
-</code></pre>
-
-<h3 id="update">Update</h3>
-
-<p>After the initial installation further updates or changes can be installed.
-Run the update script as follows.</p>
-
-<pre><code class="language-bash">$HOME/instablog/deploy/update_instablog.sh
-</code></pre>
-
-<p>It will update the <code>instablog</code> installation from the <a href="https://github.com/cdeck3r/instablog">Github repo</a>.</p>
-
-<p><strong>Note:</strong> The update script assumes <code>$HOME/instablog</code> as the installation directory.</p>
-
-<h3 id="run-instablog">Run instablog</h3>
-
-<p>You may run the instablog main script from the command line or using a wrapper script in a periodic cronjob.</p>
-
-<h5 id="run-from-command-line"><strong>Run from Command Line</strong></h5>
-
-<p>First, change into the instablog installation directory.</p>
-
-<pre><code class="language-bash">cd $HOME/instablog
-</code></pre>
-
-<p>Then create the virtualenv <code>venv</code> and activtate it.</p>
-
-<pre><code class="language-bash">make venv
-source venv/bin/activate
-</code></pre>
-
-<p>Now, run the instablog main script after defining some variables used as script&rsquo;s parameters.</p>
-
-<pre><code class="language-bash">DATAROOT = ...
-PROFILE_URL = ...
-GITHUB_URL = ...
-
-cd scripts
-./instablog.sh -r &quot;$DATAROOT&quot; -p &quot;$PROFILE_URL&quot; -g &quot;$GITHUB_URL&quot;
-</code></pre>
-
-<p>Finally, at the end, deactivate the <code>venv</code> again.</p>
-
-<pre><code class="language-bash">cd $HOME/instablog
-deactivate
-</code></pre>
-
-<h5 id="run-instablog-as-a-cronjob"><strong>Run instablog as a cronjob</strong></h5>
-
-<p>The wrapper script may be used as entry script for a cronjob.
-Install a cronjob calling the following script.</p>
-
-<pre><code class="language-bash">$HOME/instablog/deploy/cron_instablog.sh
-</code></pre>
-
-<p>The <code>cron_instablog.sh</code> activates the venv, defines the data directory and the URLs for the Instagram profile and the Github blog. It runs <code>instablog.sh</code> script and at the end, the script deactivates the venv.</p>
-
-<p>You install provided the cronjob example <a href="https://github.com/cdeck3r/instablog/blob/master/deploy/numb3rspipeline.crontab">instablog.crontab</a></p>
-
-<pre><code class="language-bash">crontab instablog.crontab
-crontab -l
-</code></pre>
-
-<p>The last line verifies that the cronjob got installed. The example schedules the script once an hour at minute 58. So, it runs 0:58, 1:58, 2:58, &hellip;</p>
+<p><strong>Note:</strong> To update the Github hosted blog instablog requires the appropriate user credentials. The user needs to configure the Github settings in order to retrieve the access token. Details are part of the <a href="https://github.com/cdeck3r/instablog/tree/master/deploy">deployment instructions</a>.</p>
 
                 </div>
             </div>
@@ -775,11 +723,10 @@ crontab -l
 <li><label><input type="checkbox" disabled class="task-list-item"> To let the blog post have a URL reference back to the genuine instagram post</label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> To run the blog post creation on a regular basis, e.g. at a hourly interval</label></li>
 <li><label><input type="checkbox" checked disabled class="task-list-item"> To be able to single-click deploy the software on a Virtual Private Server</label></li>
-
-<li><p>[ ] Optionally: To enable a simple remote monitoring notifying the regular successful or failed run</p>
-
-<h3 id="conclusion">Conclusion</h3></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Optionally: To enable a simple remote monitoring notifying the regular successful or failed run</label></li>
 </ul>
+
+<h3 id="conclusion">Conclusion</h3>
 
 <p><a href="//github.com/cdeck3r/instablog">Instablog</a> autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.</p>
 
@@ -789,7 +736,7 @@ crontab -l
 
 <p>Instablog runs unattended on a server on the Internet. The software is split into different small components. It is kept intentionelly lean by using the filesystem as middleware between components. I utilized the approach of <a href="https://en.wikipedia.org/wiki/Convention_over_configuration">convention over configuration</a>, not only to speed up development, but to achieve resilience, too.</p>
 
-<p>Still, lot&rsquo;s of things are missing. The shell scripts do not check for parameters when invoked. There are no unit tests at all. It is unclear what happens, if the scripts meet a video or other content other than images. The python code requires improvement. There are lots of <code>for</code> loops and <code>if/then</code> statements instead of <code>map</code> or <code>apply</code> and <code>switch/case</code> statements. The Instagram images link to a content delivery network (CDN). It is unclear, wether the links will stay constant over time. An enhancement option is to download the images and store them for the blog.</p>
+<p>Still, lots of things are missing. The shell scripts do not check for parameters when invoked. There are no unit tests at all. It is unclear what happens, if the scripts meet a video or other content other than images. The python code requires improvement. There are lots of <code>for</code> loops and <code>if/then</code> statements instead of <code>map</code> or <code>apply</code> and <code>switch/case</code> statements. The Instagram images link to a content delivery network (CDN). It is unclear, wether the links will stay constant over time. An enhancement option is to download the images and store them for the blog.</p>
 
                 </div>
             </div>
