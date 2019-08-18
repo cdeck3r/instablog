@@ -61,3 +61,10 @@ This idea is simple and effective. After each run of the `instacrawler` componen
 Option 3 is easy to implement. The `instablog` main script records the results file, that is the `shortcodes.csv` file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the `instapost` script for the next step.
 
 One thing left. Option 3 only works from the day on when `instablog` starts. It can't restore a feed history from the past. When `instablog` starts the regular operation from the first time, it initializes the feed history. Subsequently, it must frequently run with no longer breaks to keep up with the feed history.
+
+### Feed History: State-based Crawler
+
+The feed history features extends the `instablog` main script.
+The `instablog` main script calls the `feed_history.sh` script after the `instacrawler` script. Feed history stores a copy of the current `shortcodes.csv` file as a date stamp version, merges all versions of a day, and creates a new  `shortcodes.csv` file with all contents. The following activity diagram depicts the process.
+
+![feed_history activity diagram](uml/feed_history.png)
