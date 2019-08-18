@@ -27,6 +27,19 @@ It will update the `instablog` installation from the [Github repo](https://githu
 
 **Note:** The update script assumes `$HOME/instablog` as the installation directory.
 
+### Github Credentials
+
+When instablog updates the website using `git` it requires the user creditials. The user needs to configure the Github repository to retrieve an access token. The token must be placed on the server in `$HOME/.env` which is included when instablog starts. The content of the file looks like the following
+
+```
+# dramalamas github
+# https://github.com/dramalamas/dramalamas.github.io
+# WRITE_PUBLIC_REPO
+GITHUB_ACCESS_TOKEN="XXXXXXXXXXXXXXXXXXXXXXXX"
+```
+
+The `.env` file is not included in the repository, because it contains the secret access token. The user must create the file and place it in `$HOME`.
+
 ### Run instablog
 
 You may run the instablog main script from the command line or using a wrapper script in a periodic cronjob.
