@@ -24,7 +24,7 @@ New posts on our [Instagram account](//www.instagram.com/dramalamas.tours2019/) 
 * To be able to single-click deploy the software on a Virtual Private Server
 * Optionally: To enable a simple remote monitoring notifying the regular successful or failed run
 
-### Valueable Contributions
+### Contributions
 
 Instablog has some features, where it may have an advantage over alternative solutions.
 

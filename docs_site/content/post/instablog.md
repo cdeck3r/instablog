@@ -66,9 +66,9 @@ One thing left. Option 3 only works from the day on when `instablog` starts. It 
 
 ### Feed History: State-based Crawler
 
-The feed history features extends the `instablog` main script.
-Th feed history stores a copy of the current `shortcodes.csv` file as a date stamp version, merges all versions of a day, and creates a new  `shortcodes.csv` file with all contents. The next component, `instapost`, continues with the newly created shortcodes file.
+The feed history feature extends the `instablog` main script.
+It stores a copy of the current `shortcodes.csv` file as a date-stamp version, merges all versions of a day, and creates a new  `shortcodes.csv` file with the complete content. The next component, `instapost`, continues with the newly created shortcodes file.
 
-The following activity diagram depicts how the `feed_history.sh` script works.
+The following activity diagram depicts how the [`feed_history.sh`](https://github.com/cdeck3r/instablog/blob/master/scripts/feed_history.sh) script works.
 
 ![feed_history activity diagram](uml/feed_history.png)
