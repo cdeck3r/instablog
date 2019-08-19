@@ -23,7 +23,7 @@ The list below displays the achieved objectives:
 
 ### Conclusion
 
-[Instablog](//github.com/cdeck3r/instablog) autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day. The software runs on a virtual private server on the Internet. It successfully runs since three days and has shown this MVP's functionality for at least two different days.
+[Instablog](//github.com/cdeck3r/instablog) autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day. The software runs on a virtual private server on the Internet. It successfully runs since three days and has shown MVP functionality for at least two different days.
 
 ### Final Note
 
