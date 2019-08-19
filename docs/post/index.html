@@ -398,7 +398,7 @@ This includes</p>
 <li>blogpost: create a blogpost from all Instagram posts of a single day</li>
 </ul>
 
-<p><img src="uml/designconcept.png" alt="designconcept" /></p>
+<p><img src="uml/designconcept.png" alt="designconcept"  width="406"/></p>
 
 <p>The DramaLamas blog is a jekyll website hosted on GitHub.
 Updating the blog is a git commit activity.</p>
@@ -581,6 +581,13 @@ album_img_count = 4
                     <h2 class="section-heading">instablog: Main Script</h2>
                     
 
+<style>
+img {
+  max-width: 100%;
+  height: auto;
+}
+</style>
+
 <h3 id="instablog">instablog</h3>
 
 <p>The main script for automatically creating daily blog posts from Instagram posts. This script may run as a cronjob.</p>
@@ -617,7 +624,7 @@ Default POST_DATE: 2019-08-15
 <p>There is no default value for the github blog URL. If you leave this option out, it  will not update the remote blog. Credentials to update the github repo are stored in an external <code>.env</code> file.</p>
 
 <p>The following activity diagram displays the workflow of all <code>instablog</code> components.
-<img src="uml/instablog.png" alt="instablog activity diagram" width="100%"/></p>
+<img src="uml/instablog.png" alt="instablog activity diagram" width="546"/></p>
 
 <h3 id="feed-history-and-the-recent-posts-limit">Feed History and the &ldquo;Recent Posts&rdquo; Limit</h3>
 
@@ -648,7 +655,7 @@ It stores a copy of the current <code>shortcodes.csv</code> file as a date-stamp
 
 <p>The following activity diagram depicts how the <a href="https://github.com/cdeck3r/instablog/blob/master/scripts/feed_history.sh"><code>feed_history.sh</code></a> script works.</p>
 
-<p><img src="uml/feed_history.png" alt="feed history ac tivity diagram"  width="65%/></p>
+<p><img src="uml/feed_history.png" alt="feed history ac tivity diagram"  width="544"/></p>
 
                 </div>
             </div>

@@ -11,7 +11,7 @@ This is a brief design sketch of Instablog's components.
 * instapost: download a single Instagram post's data
 * blogpost: create a blogpost from all Instagram posts of a single day
 
-![designconcept](uml/designconcept.png)
+<img src="uml/designconcept.png" alt="designconcept"  width="406"/>
 
 The DramaLamas blog is a jekyll website hosted on GitHub.
 Updating the blog is a git commit activity.

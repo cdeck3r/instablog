@@ -5,6 +5,12 @@ description = "Details of the instablog main script"
 sec = 7
 +++
 
+<style>
+img {
+  max-width: 100%;
+  height: auto;
+}
+</style>
 
 ### instablog
 
@@ -40,7 +46,7 @@ Default POST_DATE: 2019-08-15
 There is no default value for the github blog URL. If you leave this option out, it  will not update the remote blog. Credentials to update the github repo are stored in an external `.env` file.
 
 The following activity diagram displays the workflow of all `instablog` components.
-<img src="uml/instablog.png" alt="instablog activity diagram" width="100%"/>
+<img src="uml/instablog.png" alt="instablog activity diagram" width="546"/>
 
 ### Feed History and the "Recent Posts" Limit
 
@@ -71,4 +77,4 @@ It stores a copy of the current `shortcodes.csv` file as a date-stamp version, m
 
 The following activity diagram depicts how the [`feed_history.sh`](https://github.com/cdeck3r/instablog/blob/master/scripts/feed_history.sh) script works.
 
-<img src="uml/feed_history.png" alt="feed history ac tivity diagram"  width="65%/>
+<img src="uml/feed_history.png" alt="feed history ac tivity diagram"  width="544"/>
