@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="
 		
-		Server software for automatically creating daily blog posts from Instagram posts.
+		Server software for cross-posting from Instagram to a daily blog.
 		"> 
     
 	<meta name="author" content=" cdeck3r ">  
@@ -84,7 +84,7 @@ body {
 				
 					<div class="intro-message">
 						<h1>Instablog</h1>
-						<h3>Server software for automatically creating daily blog posts from Instagram posts.</h3>
+						<h3>Server software for cross-posting from Instagram to a daily blog.</h3>
 						<hr class="intro-divider">
 
 						<ul class="list-inline intro-social-buttons">
@@ -267,7 +267,7 @@ body {
 <li>Optionally: To enable a simple remote monitoring notifying the regular successful or failed run</li>
 </ul>
 
-<h3 id="valueable-contributions">Valueable Contributions</h3>
+<h3 id="contributions">Contributions</h3>
 
 <p>Instablog has some features, where it may have an advantage over alternative solutions.</p>
 
@@ -328,7 +328,7 @@ body {
 
 <ul>
 <li>caption</li>
-<li>date and time</li>
+<li><s>date and time</s></li>
 <li>image</li>
 <li>link from the image to Instagram post</li>
 </ul>
@@ -349,6 +349,38 @@ body {
 
 	
     <div class="content-section-b">
+    
+   
+        <div class="container">
+
+            <div class="row">
+                <div>
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Development</h2>
+                    <p>The instablog development utilizes a docker image with all tools installed.
+This includes</p>
+
+<ul>
+<li>Python3 environment</li>
+<li><a href="https://jupyter.org/">Jupyter</a> environment</li>
+<li>Java</li>
+<li><a href="http://plantuml.com/">PlantUML</a> to quickly write UML diagrams</li>
+<li><a href="https://gohugo.io/">hugo</a> static site generators</li>
+</ul>
+
+<p>Development is controlled by a <code>Makefile</code>. There are quickstart instructions on the <a href="https://github.com/cdeck3r/instablog">instablog&rsquo;s Github repo</a></p>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+    </div>
+
+	 
+    <div class="content-section-a">
     
    
         <div class="container">
@@ -379,8 +411,8 @@ Updating the blog is a git commit activity.</p>
 
     </div>
 
-	 
-    <div class="content-section-a">
+	
+    <div class="content-section-b">
     
    
         <div class="container">
@@ -456,8 +488,8 @@ Updating the blog is a git commit activity.</p>
 
     </div>
 
-	
-    <div class="content-section-b">
+	 
+    <div class="content-section-a">
     
    
         <div class="container">
@@ -536,8 +568,8 @@ album_img_count = 4
 
     </div>
 
-	 
-    <div class="content-section-a">
+	
+    <div class="content-section-b">
     
    
         <div class="container">
@@ -611,10 +643,10 @@ Default POST_DATE: 2019-08-15
 
 <h3 id="feed-history-state-based-crawler">Feed History: State-based Crawler</h3>
 
-<p>The feed history features extends the <code>instablog</code> main script.
-Th feed history stores a copy of the current <code>shortcodes.csv</code> file as a date stamp version, merges all versions of a day, and creates a new  <code>shortcodes.csv</code> file with all contents. The next component, <code>instapost</code>, continues with the newly created shortcodes file.</p>
+<p>The feed history feature extends the <code>instablog</code> main script.
+It stores a copy of the current <code>shortcodes.csv</code> file as a date-stamp version, merges all versions of a day, and creates a new  <code>shortcodes.csv</code> file with the complete content. The next component, <code>instapost</code>, continues with the newly created shortcodes file.</p>
 
-<p>The following activity diagram depicts how the <code>feed_history.sh</code> script works.</p>
+<p>The following activity diagram depicts how the <a href="https://github.com/cdeck3r/instablog/blob/master/scripts/feed_history.sh"><code>feed_history.sh</code></a> script works.</p>
 
 <p><img src="uml/feed_history.png" alt="feed_history activity diagram" /></p>
 
@@ -626,8 +658,8 @@ Th feed history stores a copy of the current <code>shortcodes.csv</code> file as
 
     </div>
 
-	
-    <div class="content-section-b">
+	 
+    <div class="content-section-a">
     
    
         <div class="container">
@@ -658,8 +690,8 @@ Th feed history stores a copy of the current <code>shortcodes.csv</code> file as
 
     </div>
 
-	 
-    <div class="content-section-a">
+	
+    <div class="content-section-b">
     
    
         <div class="container">
@@ -690,7 +722,7 @@ Th feed history stores a copy of the current <code>shortcodes.csv</code> file as
 
 <h3 id="conclusion">Conclusion</h3>
 
-<p><a href="//github.com/cdeck3r/instablog">Instablog</a> autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day.</p>
+<p><a href="//github.com/cdeck3r/instablog">Instablog</a> autonomously monitors our Instagram profile for new posts and creates a blog post containing on instagram post from a single day. The software runs on a virtual private server on the Internet. It successfully runs since three days and has shown this MVP&rsquo;s functionality for at least two different days.</p>
 
 <h3 id="final-note">Final Note</h3>
 

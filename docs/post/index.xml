@@ -6,10 +6,20 @@
     <description>Recent content in Sections on Instablog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://cdeck3r.com/instablog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Development</title>
+      <link>http://cdeck3r.com/instablog/post/dev/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/dev/</guid>
+      <description>The instablog development utilizes a docker image with all tools installed. This includes
+ Python3 environment Jupyter environment Java PlantUML to quickly write UML diagrams hugo static site generators  Development is controlled by a Makefile. There are quickstart instructions on the instablog&amp;rsquo;s Github repo</description>
+    </item>
     
     <item>
       <title>Deployment and Execution</title>

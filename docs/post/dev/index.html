@@ -6,13 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="
-		
-		Server software for cross-posting from Instagram to a daily blog.
+		Short description about the Development Environment
 		"> 
     
 	<meta name="author" content=" cdeck3r ">  
     <base href="http://cdeck3r.com/instablog/">
-    <title>Tags</title>
+    <title>Development</title>
 
     
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -74,142 +73,74 @@ body {
 </head>
 <body>
 
-<section id="intro">
-	
-	<div class="intro-header">
 
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        
+        <div class="navbar-header page-scroll" style="margin-left: -15px;">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+            </button>
+            <a class="page-scroll navbar-brand" href="#intro">Instablog</a>
+        </div>
+        
+        <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
 				
-					<div class="intro-message">
-						<h1>Instablog</h1>
-						<h3>Server software for cross-posting from Instagram to a daily blog.</h3>
-						<hr class="intro-divider">
-
-						<ul class="list-inline intro-social-buttons">
-						
-
-
-  <li><a href="//github.com/cdeck3r" class="btn btn-default btn-lg" title="GitHub">
-  <i class="fa fa-github"></i>
-  </a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <li><a href="//linkedin.com/in/cdeck3r" title="LinkedIn" class="btn btn-default btn-lg">
-  <i class="fa fa-linkedin"></i>
-  </a></li>
-
-
-
-
-
-
-
-  <li><a href="//xing.com/profile/Christian_Decker10" title="Xing" class="btn btn-default btn-lg">
-  <i class="fa fa-xing"></i>
-  </a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <li><a href="//youtube.com/channel/UCZ5wNVV_E6AA3L3C-mvqwSA" title="YouTube" class="btn btn-default btn-lg">
-  <i class="fa fa-youtube"></i>
-  </a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <li><a href="//twitter.com/cdeck3r" title="Twitter" class="btn btn-default btn-lg">
-  <i class="fa fa-twitter"></i>
-  </a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <li><a href="mailto:info@cdeck3r.com" title="Email" class="btn btn-default btn-lg">
-  <i class="fa fa-envelope"></i>
-  </a></li>
-
-
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	
-</section>
-
-<section id="main">
-
-
-
+				<li>
+				  <a class="page-scroll" href=//github.com/cdeck3r/instablog>
+                    Github
+                  </a>
+                </li>
+				
+				
+				<li>
+					<a class="page-scroll" href=//cdeck3r.com>
+                    cdeck3r
+					</a>
+                </li>
+				
+            </ul>
+        </div>
+        
+    </div>
+    
+</nav>
+
+
+<section id="services">
+   <div class="content-section-a">
+
+      <div class="container">
+
+        <div class="row">
+          <div>
+            <hr class="section-heading-spacer">
+            <div class="clearfix"></div>
+            <h2 class="section-heading">Development</h2>
+            <p>The instablog development utilizes a docker image with all tools installed.
+This includes</p>
+
+<ul>
+<li>Python3 environment</li>
+<li><a href="https://jupyter.org/">Jupyter</a> environment</li>
+<li>Java</li>
+<li><a href="http://plantuml.com/">PlantUML</a> to quickly write UML diagrams</li>
+<li><a href="https://gohugo.io/">hugo</a> static site generators</li>
+</ul>
+
+<p>Development is controlled by a <code>Makefile</code>. There are quickstart instructions on the <a href="https://github.com/cdeck3r/instablog">instablog&rsquo;s Github repo</a></p>
+
+        </div>
+    </div>
+
+</div>
+</div>
 
 </section>
-
 
 <footer>
     <div class="container">
