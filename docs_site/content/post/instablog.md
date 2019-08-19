@@ -46,7 +46,7 @@ Default POST_DATE: 2019-08-15
 There is no default value for the github blog URL. If you leave this option out, it  will not update the remote blog. Credentials to update the github repo are stored in an external `.env` file.
 
 The following activity diagram displays the workflow of all `instablog` components.
-<img src="uml/instablog.png" alt="instablog activity diagram" width="546"/>
+<img src="uml/instablog.png" alt="instablog activity diagram" width="100%"/>
 
 ### Feed History and the "Recent Posts" Limit
 
@@ -58,7 +58,7 @@ Typical RSS feed solution, e.g. [RSS Hub](https://docs.rsshub.app/en/#instagram)
 
 ##### **Option 2: Instagram explore**
 
-Explore brings up posts matching a tag. The tag `#iceland` brings up a page with lots of posts associated with this tag. Just have a look on [`https://www.instagram.com/explore/tags/iceland/`](https://www.instagram.com/explore/tags/iceland/). Interestingly, the page data refers to 76 individual posts. The `instacrawler` component can successfully process the explore URL, extracts and stores all 70+ shortcodes. It means, however, that all user specific Instagram posts must be specifically tagged to separate them posts from others. Still, we can't avoid free riding. When others would use this tag, their posts would make it into our blog.
+Explore brings up posts matching a tag. The tag `#iceland` brings up a page with lots of posts associated with this tag. Just have a look on [`/explore/tags/iceland/`](https://www.instagram.com/explore/tags/iceland/). Interestingly, the page data refers to 76 individual posts. The `instacrawler` component can successfully process the explore URL, extracts and stores all 70+ shortcodes. It means, however, that all user specific Instagram posts must be specifically tagged to separate them posts from others. Still, we can't avoid free riding. When others would use this tag, their posts would make it into our blog.
 
 ##### **Option 3: State-based Crawler**
 
@@ -66,7 +66,7 @@ This idea is simple and effective. After each run of the `instacrawler` componen
 
 Option 3 is easy to implement. The `instablog` main script records the results file, that is the `shortcodes.csv` file, of each instacrawler run throughout the day. It merges the current file with all the last ones, removes duplicates and provides the results to the `instapost` script for the next step. The following sequence diagram depicts the embedding of the feed history feature in the `instablog` main script.
 
-<img src="uml/instablog_feed_history.png" alt="feed history sequence diagram" width="75%"/>
+<img src="uml/instablog_feed_history.png" alt="feed history sequence diagram" width="546"/>
 
 One thing left. Option 3 only works from the day on when `instablog` starts. It can't restore a feed history from the past. When `instablog` starts the regular operation from the first time, it initializes the feed history. Subsequently, it must frequently run with no longer breaks to keep up with the feed history.
 
