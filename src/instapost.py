@@ -75,7 +75,12 @@ def download_posts(insta_posts_shortcodes):
         # prep string for json parsing
         post_json = json.loads(post_data_str.replace("\n","\\n"))
 
-        post_info.append( post_json["caption"] )
+        try:
+            post_info.append( post_json["caption"] )
+        except KeyError:
+            logger.warning('No caption in instagram post. Add empty one.')
+            post_info.append( "" ) # empty caption
+
         post_info.append( post_json['uploadDate'] )
 
         ##################################

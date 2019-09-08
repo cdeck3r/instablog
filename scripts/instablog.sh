@@ -119,7 +119,7 @@ log_echo "INFO" "POST_DATE: ${POST_DATE}"
 
 # Note about the remote update
 
-if [ -z "${GITHUB_URL+x}" ]; then
+if [ -z "${GITHUB_URL}" ]; then
     log_echo "WARN" "No GITHUB_URL specified. Will not update remote blog."
 fi
 
@@ -134,6 +134,8 @@ mkdir -p "$DATAROOT"
 
 ##################################
 
+# clean up
+#rm -rf "$DATAROOT"/shortcodes.csv
 "$INSTACRAWLER" "$DATAROOT" "$PROFILE_URL"
 "$FEED_HISTORY" "$DATAROOT" "$POST_DATE"
 "$INSTAPOST" "$DATAROOT"
