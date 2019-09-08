@@ -72,7 +72,7 @@ fi
 log_echo "INFO" "Start installing: hugo"
 
 mkdir -p "$HUGO_DIR"
-wget -qO- ${HUGO_URL} | tar -C "$HUGO_DIR" -xvz
+wget --no-check-certificate -qO- ${HUGO_URL} | tar -C "$HUGO_DIR" -xvz
 
 if [[ $? -ne 0 ]]
 then
@@ -97,7 +97,7 @@ else
     PLANTUML_DIR=$(dirname $PLANTUML_JAR)
     mkdir -p $PLANTUML_DIR
     log_echo "INFO" "Download plantuml jar into directory: $PLANTUML_DIR"
-    wget -P $PLANTUML_DIR $PLANTUML_URL
+    wget --no-check-certificate -q -P $PLANTUML_DIR $PLANTUML_URL
     # error check
     if [[ $? -ne 0 ]]; then
         log_echo "ERROR" "Error downloading plantuml jar: "$PLANTUML_URL""
