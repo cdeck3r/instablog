@@ -88,7 +88,7 @@ def classify_posts(post_info_df,
         post_info_df['pres_type'] = 'fullscreen'
 
     for index, post in post_info_df.iterrows():
-        if len(post['caption']) <= caption_len_threshold:
+        if len(str(post['caption'])) <= caption_len_threshold:
             post_info_df.loc[index, 'desc_type'] = 'caption'
         else:
             post_info_df.loc[index, 'desc_type'] = 'paragraph'
@@ -100,7 +100,7 @@ def classify_posts(post_info_df,
     # post counts > post_count_threshold
     #
     for index, post in post_info_df.iterrows():
-        if len(post['caption']) <= caption_huge_threshold:
+        if len(str(post['caption'])) <= caption_huge_threshold:
             post_info_df.loc[index, 'pres_type'] = 'regular'
             post_info_df.loc[index, 'desc_type'] = 'caption'
             logger.debug('Classify [regular / caption] for post: %s', post['shortcode'])
@@ -143,12 +143,12 @@ def pres_fullscreen(post):
 
     if post['desc_type'] == 'caption':
         entry = entry + '<figcaption>'
-        entry = entry + post['caption']
+        entry = entry + str(post['caption'])
         entry = entry + '</figcaption>'
     entry = entry + '</figure>'
 
     if post['desc_type'] == 'paragraph':
-        entry = entry + '<p>' + post['caption'] + '</p>'
+        entry = entry + '<p>' + str(post['caption']) + '</p>'
 
     return entry
 
@@ -161,12 +161,12 @@ def pres_regular(post):
 
     if post['desc_type'] == 'caption':
         entry = entry + '<figcaption>'
-        entry = entry + post['caption']
+        entry = entry + str(post['caption'])
         entry = entry + '</figcaption>'
     entry = entry + '</figure>'
 
     if post['desc_type'] == 'paragraph':
-        entry = entry + '<p>' + post['caption'] + '</p>'
+        entry = entry + '<p>' + str(post['caption']) + '</p>'
 
     return entry
 
@@ -182,7 +182,7 @@ def pres_leftright(post, lr_idx):
     pass
     entry = entry + '</p>'
     if post['desc_type'] == 'paragraph':
-        entry = entry + '<p>' + post['caption'] + '</p>'
+        entry = entry + '<p>' + str(post['caption']) + '</p>'
 
     return entry
 
