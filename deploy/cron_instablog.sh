@@ -31,7 +31,7 @@ PROFILE_URL="https://www.instagram.com/dramalamas.tours2019/"
 GITHUB_URL="https://github.com/dramalamas/dramalamas.github.io"
 
 mkdir -p "$DATAROOT"
-./instablog.sh -r "$DATAROOT" -p "$PROFILE_URL" -g "$GITHUB_URL" 2>&1 >> "$HOME"/instablog.log
+./instablog.sh -r "$DATAROOT" -p "$PROFILE_URL" -g "$GITHUB_URL" >> "$HOME"/instablog.log 2>&1
 
 # deactivate virtualenv
 deactivate
