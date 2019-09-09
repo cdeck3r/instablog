@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="
-		Initial project description
+		Summary, conclusion and next steps
 		"> 
     
 	<meta name="author" content=" cdeck3r ">  
     <base href="http://cdeck3r.com/instablog/">
-    <title>About</title>
+    <title>De-briefing</title>
 
     
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -120,21 +120,55 @@ body {
           <div>
             <hr class="section-heading-spacer">
             <div class="clearfix"></div>
-            <h2 class="section-heading">About</h2>
+            <h2 class="section-heading">De-briefing</h2>
             
 
-<p>In August 2019, the team <a href="//dramalamas.tours">DramaLamas</a> will take part in the charity rallye <a href="https://balkan.superlative-adventure.com/balkan-express.html">BALKAN EXPRESS RALLY</a>. We want to document our trip using <a href="//instagram.com">Instagram</a> as well as on our blog.</p>
+<p>The instablog software was in operation from August 20 until September 05, 2019. This section reviews the software&rsquo;s operation and performance.</p>
 
-<p>Important websites</p>
+<h3 id="hourly-operation">Hourly Operation</h3>
+
+<p>In the 16 days of operation instablog ran successfully every hour. It has updated in the <a href="//dramalamas.tours">blog&rsquo;s website</a> in this hourly interval. The blog even correctly displayed emoticons included in the Instagram&rsquo;s posts captions.</p>
+
+<p><strong>Conclusion:</strong> The software operated stable throughout the 16 days of operation.</p>
+
+<h3 id="faults">Faults</h3>
+
+<p>As mentioned previously, there were no unit tests during the development. At the tour start day (August 22, 2019), this situation took revenge.</p>
 
 <ul>
-<li>Team website DramaLamas: <a href="//dramalamas.tours">dramalamas.tours</a></li>
-<li>Team&rsquo;s Instagram profile: <a href="//www.instagram.com/dramalamas.tours2019/">dramalamas.tours2019</a></li>
+<li>Instagram posts on the start day were incompletely cross-posted on the blog&rsquo;s website.</li>
+<li>Tour day 2 and 3 have not been posted on the blog&rsquo;s website at all.</li>
 </ul>
 
-<h3 id="important-update">Important Update:</h3>
+<p>However, at the 4th tour day instablog&rsquo;s operation returned to normal. From that day on, all Instagram&rsquo;s posts have been successfully cross-posted again.</p>
 
-<p><strong>After 16 days of operation during the BALKAN EXPRESS RALLY, we added a review of instablog&rsquo;s operation and performance. Please see the de-briefing section at the end of this blog.</strong></p>
+<p><strong>Conclusion:</strong> Unit test are valueable and should not be omitted. The instablog software is resilient.</p>
+
+<h3 id="analysis">Analysis</h3>
+
+<p>After the rallye, we performed an error analysis. It revealed</p>
+
+<ul>
+<li>Incomplete log files: the log files only recorded the bash scripts&rsquo; outputs, but not the log messages from the python&rsquo;s scripts. The reason was that the log file did not record the error channel.</li>
+<li>Complete shortcodes: the shortcodes acquired by the instacrawler component were complete for all days.</li>
+</ul>
+
+<p>The feed_history component stored the Instagram&rsquo;s post shortcodes in files named according to the post date. This enables an instablog replay for past dates starting with the instapost component, which downloads the posts one after the other.</p>
+
+<p>The replay revealed an exception in the instapost component. Latter was unable to process posts with empty captions.</p>
+
+<p><strong>Conclusion:</strong> The filesystem loosely couples the different software component together and persists the operational state. This enables the replay using the date-based Instagram feed history.</p>
+
+<h3 id="bugfixing">Bugfixing</h3>
+
+<ul>
+<li>Handle empty post captions: <a href="https://github.com/cdeck3r/instablog/commit/8cc0f2e2ecbe1e1d1b8edb6d59f4a2c77816e598#diff-a0b55a612e78a93ade88e90156987a72">bugfix #1</a> and <a href="https://github.com/cdeck3r/instablog/commit/3b6f7bb0d2adcce3d08b4b35d65e075f1e3f9bb8">bugfix #2</a> catch the exception when the software encounters empty captions.</li>
+<li>Incomplete log files: The <a href="https://github.com/cdeck3r/instablog/commit/47cbdbac377a77535fabf7e90c15734e10396165">bugfix</a> redirect error channel to stdout<br /></li>
+</ul>
+
+<p>After the bugfixing, we re-run instablog with the recorded feed_history to complete the missing tour days on the blog&rsquo;s website. All Instagram posts are now available on the <a href="//dramalamas.tours/">blog&rsquo;s website</a>.</p>
+
+<p><strong>Conclusion:</strong> After the bugfixing, the blog&rsquo;s website is complete.</p>
 
         </div>
     </div>

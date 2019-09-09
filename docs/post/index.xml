@@ -6,10 +6,22 @@
     <description>Recent content in Sections on Instablog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://cdeck3r.com/instablog/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>De-briefing</title>
+      <link>http://cdeck3r.com/instablog/post/debriefing/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://cdeck3r.com/instablog/post/debriefing/</guid>
+      <description>The instablog software was in operation from August 20 until September 05, 2019. This section reviews the software&amp;rsquo;s operation and performance.
+Hourly Operation In the 16 days of operation instablog ran successfully every hour. It has updated in the blog&amp;rsquo;s website in this hourly interval. The blog even correctly displayed emoticons included in the Instagram&amp;rsquo;s posts captions.
+Conclusion: The software operated stable throughout the 16 days of operation.
+Faults As mentioned previously, there were no unit tests during the development.</description>
+    </item>
     
     <item>
       <title>Development</title>
@@ -94,7 +106,7 @@ The software component consists of two parts.
       <guid>http://cdeck3r.com/instablog/post/about/</guid>
       <description>In August 2019, the team DramaLamas will take part in the charity rallye BALKAN EXPRESS RALLY. We want to document our trip using Instagram as well as on our blog.
 Important websites
- Team website DramaLamas: dramalamas.tours Team&amp;rsquo;s Instagram profile: dramalamas.tours2019  </description>
+ Team website DramaLamas: dramalamas.tours Team&amp;rsquo;s Instagram profile: dramalamas.tours2019  Important Update: After 16 days of operation during the BALKAN EXPRESS RALLY, we added a review of instablog&amp;rsquo;s operation and performance. Please see the de-briefing section at the end of this blog.</description>
     </item>
     
     <item>
