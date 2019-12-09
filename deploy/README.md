@@ -84,7 +84,7 @@ $HOME/instablog/deploy/cron_instablog.sh
 
 The `cron_instablog.sh` activates the venv, defines the data directory and the URLs for the Instagram profile and the Github blog. It runs `instablog.sh` script and at the end, the script deactivates the venv.
 
-You install provided the cronjob example [instablog.crontab](https://github.com/cdeck3r/instablog/blob/master/deploy/numb3rspipeline.crontab)
+You install provided the cronjob example [instablog.crontab](https://github.com/cdeck3r/instablog/blob/master/deploy/instablog.crontab)
 
 ```bash
 crontab instablog.crontab
